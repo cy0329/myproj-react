@@ -1,4 +1,5 @@
 function Rating({ score }) {
+  // 이전 커밋 이부분임
   return (
     <div>
       <ul className="flex">
