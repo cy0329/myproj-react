@@ -2,19 +2,28 @@ import { Link } from 'react-router-dom';
 
 function TopNav() {
   return (
-    <div>
-      <ul>
+    <div className="my-3">
+      <ul className="flex gap-4">
         <li>
-          <Link to="/accounts/login/">로그인</Link>
+          <MyLink to="/accounts/login/">로그인</MyLink>
         </li>
         <li>
-          <Link to="/accounts/profile/">프로필</Link>
+          <MyLink to="/accounts/profile/">프로필</MyLink>
         </li>
         <li>
-          <Link to="/reviews/">리뷰</Link>
+          <MyLink to="/reviews/">리뷰</MyLink>
         </li>
       </ul>
     </div>
   );
 }
+
+function MyLink({ to, children }) {
+  return (
+    <Link to={to} className="pb-1 text-gray-500 hover:text-red-500 border-b-4">
+      {children}
+    </Link>
+  );
+}
+
 export default TopNav;
