@@ -2,11 +2,13 @@ import Axios from 'axios';
 import DebugStates from 'components/DebugStates';
 import Review from 'components/Review';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function PageReviewList() {
   const [reviewList, setReviewList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     refetch();
@@ -70,9 +72,16 @@ function PageReviewList() {
 
       <button
         onClick={() => refetch()}
-        className="bg-yellow-400 hover:bg-red-300"
+        className="bg-yellow-400 hover:bg-red-300 mr-2 rounded p-2"
       >
         새로고침
+      </button>
+
+      <button
+        onClick={() => navigate('/reviews/new/')}
+        className="bg-blue-400 hover:bg-slate-400 rounded p-2"
+      >
+        새 리뷰
       </button>
 
       {reviewList.map((review) => (
