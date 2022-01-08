@@ -1,8 +1,11 @@
 import Axios from 'axios';
 import useFieldValues from 'hooks/useFieldValues';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function ReviewForm() {
+  let { reviewId } = useParams();
+  let review = Axios.get(`http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`);
+  console.log(review);
   const [fieldValues, handleChange] = useFieldValues({ content: '', score: 0 });
   const navigate = useNavigate();
 

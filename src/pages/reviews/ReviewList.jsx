@@ -3,17 +3,13 @@ import DebugStates from 'components/DebugStates';
 import Review from 'components/Review';
 import { useEffect, useState } from 'react';
 import useFieldValues from 'hooks/useFieldValues';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function PageReviewList() {
   const [reviewList, setReviewList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [fieldValues, handleChange, setFieldValues] = useFieldValues({
-    content: '',
-    score: 0,
-  });
 
   useEffect(() => {
     refetch();
@@ -41,6 +37,8 @@ function PageReviewList() {
         setLoading(false);
       });
   };
+
+  const editReview = (editingReview) => {};
 
   const deleteReview = (deletingReview) => {
     const { id: deletingReviewId } = deletingReview;
@@ -91,7 +89,7 @@ function PageReviewList() {
         <Review
           key={review.id}
           review={review}
-          handleEdit={() => navigate('/reviews/edit/')}
+          handleEdit={() => editReview(review)}
           handleDelete={() => deleteReview(review)}
         />
       ))}
