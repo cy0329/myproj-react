@@ -2,31 +2,50 @@ import Axios from 'axios';
 import useFieldValues from 'hooks/useFieldValues';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { data } from 'autoprefixer';
 
 function ReviewForm() {
   const navigate = useNavigate();
-  const [errorObject, setErrorObject] = useState(null);
-  const [editData, setEditData] = useState({
+  // const [errorObject, setErrorObject] = useState(null);
+  // const [editData, setEditData] = useState({
+  //   content: '',
+  //   score: 0,
+  // });
+  const [fieldValues, handleChange, setFieldValues] = useFieldValues({
     content: '',
     score: 0,
   });
-  const [fieldValues, handleChange, setFieldValues] = useFieldValues(editData);
 
-  let { reviewId } = useParams();
-  const refresh = () => {
-    setErrorObject(null);
-    const url = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
-    if (reviewId) {
-      Axios.get(url)
-        .then(({ data }) =>
-          setEditData({ content: data.content, score: data.score }),
-        )
-        .catch((error) => setErrorObject(error))
-        .finally(() => setFieldValues(editData));
-    } else {
-      setFieldValues({ content: '', score: 0 });
+  const { reviewId } = useParams();
+
+  useEffect(() => {
+    async function getReview() {
+      const response = await Axios.get(
+        `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`,
+      );
+      console.log(response.data);
+      setFieldValues({
+        content: response.data.content,
+        score: response.data.score,
+      });
     }
-  };
+    getReview();
+  }, []);
+
+  // const refresh = () => {
+  //   setErrorObject(null);
+  //   const url = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
+  //   if (reviewId) {
+  //     Axios.get(url)
+  //       .then(({ data }) =>
+  //         setEditData({ content: data.content, score: data.score }),
+  //       )
+  //       .catch((error) => setErrorObject(error))
+  //       .finally(() => setFieldValues(editData));
+  //   } else {
+  //     setFieldValues({ content: '', score: 0 });
+  //   }
+  // };
 
   // const updateReview = () => {
   //   const url = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
@@ -37,7 +56,7 @@ function ReviewForm() {
   //     });
   // };
 
-  const createReview = () => {
+  const saveReview = () => {
     const url = 'http://127.0.0.1:8000/shop/api/reviews/';
     !reviewId
       ? Axios.post(url, fieldValues)
@@ -86,7 +105,8 @@ function ReviewForm() {
       <br />
       <button
         onClick={() => {
-          createReview();
+          saveReview();
+          navigate('/reviews/');
         }}
         className="bg-blue-200 hover:bg-blue-500 rounded py-2 px-3 mr-2"
       >
