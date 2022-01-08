@@ -2,8 +2,7 @@ import Axios from 'axios';
 import DebugStates from 'components/DebugStates';
 import Review from 'components/Review';
 import { useEffect, useState } from 'react';
-import useFieldValues from 'hooks/useFieldValues';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function PageReviewList() {
   const [reviewList, setReviewList] = useState([]);
@@ -38,7 +37,9 @@ function PageReviewList() {
       });
   };
 
-  const editReview = (editingReview) => {};
+  const editReview = (editingReview) => {
+    navigate(`/reviews/${editingReview.id}/edit/`);
+  };
 
   const deleteReview = (deletingReview) => {
     const { id: deletingReviewId } = deletingReview;

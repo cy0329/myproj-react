@@ -1,23 +1,62 @@
 import Axios from 'axios';
 import useFieldValues from 'hooks/useFieldValues';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function ReviewForm() {
-  let { reviewId } = useParams();
-  let review = Axios.get(`http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`);
-  console.log(review);
-  const [fieldValues, handleChange] = useFieldValues({ content: '', score: 0 });
   const navigate = useNavigate();
+  const [errorObject, setErrorObject] = useState(null);
+  const [editData, setEditData] = useState({
+    content: '',
+    score: 0,
+  });
+  const [fieldValues, handleChange, setFieldValues] = useFieldValues(editData);
+
+  let { reviewId } = useParams();
+  const refresh = () => {
+    setErrorObject(null);
+    const url = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
+    if (reviewId) {
+      Axios.get(url)
+        .then(({ data }) =>
+          setEditData({ content: data.content, score: data.score }),
+        )
+        .catch((error) => setErrorObject(error))
+        .finally(() => setFieldValues(editData));
+    } else {
+      setFieldValues({ content: '', score: 0 });
+    }
+  };
+
+  // const updateReview = () => {
+  //   const url = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
+  //   Axios.patch(url, fieldValues)
+  //     .then(() => navigate('/reviews/'))
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   const createReview = () => {
     const url = 'http://127.0.0.1:8000/shop/api/reviews/';
-    Axios.post(url, fieldValues)
-      .then(() => {
-        navigate('/reviews/');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    !reviewId
+      ? Axios.post(url, fieldValues)
+          .then(() => {
+            navigate('/reviews/');
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      : Axios.patch(
+          `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`,
+          fieldValues,
+        )
+          .then(() => {
+            navigate('/reviews/');
+          })
+          .catch((error) => {
+            console.log(error);
+          });
   };
 
   return (
