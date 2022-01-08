@@ -2,13 +2,16 @@ import Axios from 'axios';
 import useFieldValues from 'hooks/useFieldValues';
 import { useNavigate } from 'react-router-dom';
 
-function ReviewForm() {
-  const [fieldValues, handleChange] = useFieldValues({ content: '', score: 0 });
+function ReviewEditForm({ review }) {
+  const url = `http://127.0.0.1:8000/shop/api/reviews/${review.id}/`;
+  const [fieldValues, handleChange] = useFieldValues({
+    content: Axios.get(url).data.content,
+    score: Axios.get(url).data.score,
+  });
   const navigate = useNavigate();
 
-  const createReview = () => {
-    const url = 'http://127.0.0.1:8000/shop/api/reviews/';
-    Axios.post(url, fieldValues)
+  const editReview = () => {
+    Axios.patch(url, fieldValues)
       .then(() => {
         navigate('/reviews/');
       })
@@ -44,7 +47,7 @@ function ReviewForm() {
       <br />
       <button
         onClick={() => {
-          createReview();
+          editReview();
         }}
         className="bg-blue-200 hover:bg-blue-500 rounded py-2 px-3 mr-2"
       >
@@ -60,4 +63,4 @@ function ReviewForm() {
   );
 }
 
-export default ReviewForm;
+export default ReviewEditForm;

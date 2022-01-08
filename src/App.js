@@ -2,6 +2,7 @@ import TopNav from 'components/TopNav';
 import Login from 'pages/accounts/Login';
 import Profile from 'pages/accounts/Profile';
 import Components from 'pages/examples/Components';
+import ReviewEditForm from 'pages/reviews/ReviewEditform';
 import ReviewForm from 'pages/reviews/Reviewform';
 import ReviewList from 'pages/reviews/ReviewList';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -17,6 +18,7 @@ function App() {
         <Route path="/accounts/profile/" element={<Profile />} />
         <Route path="/reviews/" element={<ReviewList />} />
         <Route path="/reviews/new/" element={<ReviewForm />} />
+        <Route path="/reviews/edit/" element={<ReviewEditForm />} />
         <Route path="/examples/components/" element={<Components />} />
       </Routes>
     </div>
