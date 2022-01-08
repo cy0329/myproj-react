@@ -42,8 +42,6 @@ function PageReviewList() {
       });
   };
 
-  const editReview = (editingReview) => {};
-
   const deleteReview = (deletingReview) => {
     const { id: deletingReviewId } = deletingReview;
     const url = `http://127.0.0.1:8000/shop/api/reviews/${deletingReviewId}/`;
@@ -93,7 +91,7 @@ function PageReviewList() {
         <Review
           key={review.id}
           review={review}
-          handleEdit={() => editReview(review)}
+          handleEdit={() => navigate('/reviews/edit/')}
           handleDelete={() => deleteReview(review)}
         />
       ))}

@@ -1,24 +1,26 @@
 import Axios from 'axios';
 import useFieldValues from 'hooks/useFieldValues';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react/cjs/react.development';
 
-function ReviewEditForm({ review }) {
-  const url = `http://127.0.0.1:8000/shop/api/reviews/${review.id}/`;
-  const [fieldValues, handleChange] = useFieldValues({
-    content: Axios.get(url).data.content,
-    score: Axios.get(url).data.score,
+function ReviewEditForm() {
+  const [fieldValues, handleChange, setFieldValues] = useFieldValues({
+    content: '',
+    score: 0,
   });
+
   const navigate = useNavigate();
 
-  const editReview = () => {
-    Axios.patch(url, fieldValues)
-      .then(() => {
-        navigate('/reviews/');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  //   const editReview = () => {
+  //     const url = `http://127.0.0.1:8000/shop/api/reviews/${review.id}/`;
+  //     Axios.patch(url, fieldValues)
+  //       .then(() => {
+  //         navigate('/reviews/');
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   };
 
   return (
     <div className="border-2 border-gray-500 p-3 rounded">
@@ -46,9 +48,9 @@ function ReviewEditForm({ review }) {
       />
       <br />
       <button
-        onClick={() => {
-          editReview();
-        }}
+        // onClick={() => {
+        //   editReview();
+        // }}
         className="bg-blue-200 hover:bg-blue-500 rounded py-2 px-3 mr-2"
       >
         저장하기
