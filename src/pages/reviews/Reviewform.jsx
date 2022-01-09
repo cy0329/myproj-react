@@ -2,80 +2,54 @@ import Axios from 'axios';
 import useFieldValues from 'hooks/useFieldValues';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { data } from 'autoprefixer';
 
 function ReviewForm() {
   const navigate = useNavigate();
-  // const [errorObject, setErrorObject] = useState(null);
-  // const [editData, setEditData] = useState({
-  //   content: '',
-  //   score: 0,
-  // });
-  const [fieldValues, handleChange, setFieldValues] = useFieldValues({
-    content: '',
-    score: 0,
-  });
-
   const { reviewId } = useParams();
+  const [errorObject, setErrorObject] = useState(null);
+  // const [review, setReview] = useState(null);
+  const [fieldValues, handleChange, setFieldValues, clearFieldValues] =
+    useFieldValues({
+      content: '',
+      score: 0,
+    });
 
   useEffect(() => {
-    async function getReview() {
-      const response = await Axios.get(
-        `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`,
-      );
-      console.log(response.data);
-      setFieldValues({
-        content: response.data.content,
-        score: response.data.score,
-      });
+    if (reviewId) {
+      const url = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
+      Axios.get(url)
+        .then(({ data }) => {
+          setFieldValues((prevFieldValues) => ({
+            content: data.content,
+            score: data.score,
+          }));
+        })
+        .catch((error) => setErrorObject(error));
+    } else {
+      setFieldValues(null);
     }
-    getReview();
-  }, []);
-
-  // const refresh = () => {
-  //   setErrorObject(null);
-  //   const url = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
-  //   if (reviewId) {
-  //     Axios.get(url)
-  //       .then(({ data }) =>
-  //         setEditData({ content: data.content, score: data.score }),
-  //       )
-  //       .catch((error) => setErrorObject(error))
-  //       .finally(() => setFieldValues(editData));
-  //   } else {
-  //     setFieldValues({ content: '', score: 0 });
-  //   }
-  // };
-
-  // const updateReview = () => {
-  //   const url = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
-  //   Axios.patch(url, fieldValues)
-  //     .then(() => navigate('/reviews/'))
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  }, [reviewId]);
 
   const saveReview = () => {
     const url = 'http://127.0.0.1:8000/shop/api/reviews/';
-    !reviewId
-      ? Axios.post(url, fieldValues)
+    const detailUrl = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
+    reviewId
+      ? Axios.patch(detailUrl, fieldValues)
           .then(() => {
             navigate('/reviews/');
           })
           .catch((error) => {
             console.log(error);
           })
-      : Axios.patch(
-          `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`,
-          fieldValues,
-        )
+          .finally(() => clearFieldValues())
+      : Axios.post(url, fieldValues)
           .then(() => {
             navigate('/reviews/');
           })
           .catch((error) => {
             console.log(error);
-          });
+          })
+          .finally(() => clearFieldValues());
   };
 
   return (
