@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import useFieldValues from 'hooks/useFieldValues';
+// import useFieldValues from 'hooks/useFieldValues';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -8,11 +8,25 @@ function ReviewForm() {
   const { reviewId } = useParams();
   const [errorObject, setErrorObject] = useState(null);
   // const [review, setReview] = useState(null);
-  const [fieldValues, handleChange, setFieldValues, clearFieldValues] =
-    useFieldValues({
-      content: '',
-      score: 0,
-    });
+  // useFieldValues 전부 가져와서 써보기 ----------------------------------------
+  const [fieldValues, setFieldValues] = useState({ content: '', score: 0 });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFieldValues((prevFieldValues) => ({
+      ...prevFieldValues,
+      [name]: value,
+    }));
+  };
+
+  const clearFieldValues = () => setFieldValues({ content: '', score: 0 });
+  // ------------------------------- 사용 성공 ------------------------------------
+  // useFieldValues도 useEffect처럼 훅이기 때문에 이전 방법으로 사용할 시
+  // useEffect가 먼저 호출되어 setFieldValues가 실행되고(비동기 세상이라서...?)
+  // 그 후 useFieldVlaues로 지정해주는 초기값이 세팅되기 때문에
+  // 수정 버튼 클릭 시 계속 초기값인 {content: '', score: 0}으로 바뀌어 소환되었던 것.
+  // export 의 문법 중 다른 방법을 사용한다면 useFieldValues 를 안쓰고도 그 훅 안의 내용들을
+  // 사용할 수 있을 것 같지만....
 
   useEffect(() => {
     if (reviewId) {
@@ -20,13 +34,14 @@ function ReviewForm() {
       Axios.get(url)
         .then(({ data }) => {
           setFieldValues((prevFieldValues) => ({
+            ...prevFieldValues,
             content: data.content,
             score: data.score,
           }));
         })
         .catch((error) => setErrorObject(error));
     } else {
-      setFieldValues(null);
+      setFieldValues({ content: '', score: 0 });
     }
   }, [reviewId]);
 
