@@ -19,8 +19,13 @@ function App() {
         <Route path="/accounts/login/" element={<Login />} />
         <Route path="/accounts/profile/" element={<Profile />} />
         <Route path="/reviews/" element={<ReviewList />} />
+        {/* 솔루션 방식(스타일링 거의 없음) */}
         <Route path="/reviews/new/" element={<PageReviewForm />} />
         <Route path="/reviews/:reviewId/edit/" element={<PageReviewForm />} />
+
+        {/* 내 방식 */}
+        {/* <Route path="/reviews/new/" element={<ReviewForm />} />
+        <Route path="/reviews/:reviewId/edit/" element={<ReviewForm />} /> */}
         <Route path="/examples/components/" element={<Components />} />
         <Route path="/blog/" element={<Pageblog />} />
       </Routes>
