@@ -28,7 +28,7 @@ function BlogForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
           name="content"
           value={fieldValues.content}
           onChange={handleFieldChange}
-          className="w-full py-20 border border-gray-400 rounded"
+          className="w-full pb-40 border border-gray-400 rounded"
           disabled={loading}
         />
       </div>
