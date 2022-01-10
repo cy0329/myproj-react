@@ -3,7 +3,7 @@ import { useState } from 'react';
 function useFieldValues(initialFieldValues) {
   const [fieldValues, setFieldValues] = useState(initialFieldValues);
 
-  const handleChange = (e) => {
+  const handleFieldChange = (e) => {
     const { name, value } = e.target;
     setFieldValues((prevFieldValues) => ({
       ...prevFieldValues,
@@ -13,7 +13,12 @@ function useFieldValues(initialFieldValues) {
 
   const clearFieldValues = () => setFieldValues(initialFieldValues);
 
-  return [fieldValues, handleChange, clearFieldValues, setFieldValues];
+  return {
+    fieldValues,
+    handleFieldChange,
+    clearFieldValues,
+    setFieldValues,
+  };
 }
 
 export default useFieldValues;
