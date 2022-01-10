@@ -1,14 +1,15 @@
+import './App.css';
 import TopNav from 'components/TopNav';
 import Login from 'pages/accounts/Login';
 import Profile from 'pages/accounts/Profile';
 import Components from 'pages/examples/Components';
 import ReviewForm from 'pages/reviews/Reviewform';
-import ReviewFormC from 'components/ReviewFormSol';
 import ReviewList from 'pages/reviews/ReviewList';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import './App.css';
 import PageReviewForm from 'pages/reviews/PageReviewFormSol';
-import Pageblog from 'pages/blog/Pageblog';
+import PageblogList from 'pages/blog/PageblogList';
+import PageblogForm from 'pages/blog/PageblogForm';
+import PageblogDetail from 'pages/blog/PageblogDetail';
 
 function App() {
   return (
@@ -27,7 +28,12 @@ function App() {
         {/* <Route path="/reviews/new/" element={<ReviewForm />} />
         <Route path="/reviews/:reviewId/edit/" element={<ReviewForm />} /> */}
         <Route path="/examples/components/" element={<Components />} />
-        <Route path="/blog/" element={<Pageblog />} />
+
+        {/* 여기부터 블로그 */}
+        <Route path="/blogs/" element={<PageblogList />} />
+        <Route path="/blogs/new/" element={<PageblogForm />} />
+        <Route path="/blogs/:blogId/" element={<PageblogDetail />} />
+        <Route path="/blogs/:blogId/detail/" element={<PageblogDetail />} />
       </Routes>
     </div>
   );
