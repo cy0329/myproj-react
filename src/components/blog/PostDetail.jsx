@@ -41,6 +41,7 @@ function PostDetail() {
       <div className="block bg-blue-200 text-center py-2 mb-2">
         {post.title}
       </div>
+      <img src="https://placeimg.com/640/480/animals" alt="" />
       <div className="block bg-green-100 px-2 py-1">{post.content}</div>
     </div>
   );
