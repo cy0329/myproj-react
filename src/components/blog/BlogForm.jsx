@@ -14,12 +14,12 @@ function BlogForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
     <div>
       <div className="mb-3">
         <h2 className="text-lg">제목</h2>
-        <input
-          type="text"
+        <textarea
           name="title"
           value={fieldValues.title}
           onChange={handleFieldChange}
           className="block w-full border border-gray-400 py-3 px-4 rounded"
+          disabled={loading}
         />
       </div>
       <div>
@@ -28,7 +28,8 @@ function BlogForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
           name="content"
           value={fieldValues.content}
           onChange={handleFieldChange}
-          className="block w-full py-20 border border-gray-400 rounded"
+          className="w-full py-20 border border-gray-400 rounded"
+          disabled={loading}
         />
       </div>
       <div>

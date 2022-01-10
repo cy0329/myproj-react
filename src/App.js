@@ -32,8 +32,8 @@ function App() {
         {/* 여기부터 블로그 */}
         <Route path="/blogs/" element={<PageblogList />} />
         <Route path="/blogs/new/" element={<PageblogForm />} />
-        <Route path="/blogs/:blogId/" element={<PostDetail />} />
-        <Route path="/blogs/:blogId/edit/" element={<PageblogForm />} />
+        <Route path="/blogs/:postId/" element={<PostDetail />} />
+        <Route path="/blogs/:postId/edit/" element={<PageblogForm />} />
       </Routes>
     </div>
   );

@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import Axios from 'axios';
 import DebugStates from 'components/DebugStates';
+import BlogForm from 'components/blog/BlogForm';
 import useFieldValues from 'hooks/useFieldValues';
 import { useEffect, useState } from 'react';
-import BlogForm from 'components/blog/BlogForm';
 
 function PageblogForm() {
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,6 @@ function PageblogForm() {
         setFieldValues(response.data);
       } catch (e) {
         setError(e);
-        console.log(e);
       }
       setLoading(false);
     };
@@ -36,7 +35,6 @@ function PageblogForm() {
     else clearFieldValues();
   }, [postId, setFieldValues, clearFieldValues]);
 
-  // 다양한 함수를 정의
   const savePost = async () => {
     setLoading(true);
     setError(null);
@@ -59,7 +57,6 @@ function PageblogForm() {
     setLoading(false);
   };
 
-  // 표현 by jsx
   return (
     <div>
       <h2>
