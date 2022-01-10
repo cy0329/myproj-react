@@ -80,7 +80,7 @@ function PageReviewList() {
       </button>
 
       <button
-        onClick={() => navigate('/reviews/new/')}
+        onClick={() => navigate('/blogs/new/')}
         className="bg-blue-400 hover:bg-slate-400 rounded p-2"
       >
         새 리뷰
