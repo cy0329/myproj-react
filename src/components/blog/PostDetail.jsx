@@ -12,13 +12,13 @@ function PostDetail() {
     refetch();
   }, []);
 
-  const refetch = () => {
+  const refetch = async () => {
     setError(null);
     setLoading(true);
 
     const url = `http://127.0.0.1:8000/blog/api/posts/${postId}/`;
     // Promise 객체 --> then, catch 지원, 체이닝 가능
-    Axios.get(url)
+    await Axios.get(url)
       .then(({ data }) => {
         console.group('정상 응답');
         console.log(data);
@@ -38,11 +38,21 @@ function PostDetail() {
 
   return (
     <div>
-      <div className="block bg-blue-200 text-center py-2 mb-2">
+      <div className="block bg-blue-200 text-center text-xl py-2 mb-2 rounded">
         {post.title}
       </div>
       <img src="https://placeimg.com/640/480/animals" alt="" />
-      <div className="block bg-green-100 px-2 py-1">{post.content}</div>
+      <div className="mt-2 block bg-green-100 px-2 py-1">
+        {post.content}
+        {/* {post.content.split('\n\n').map((letter) => {
+          return (
+            <>
+              {letter}
+              <br />
+            </>
+          );
+        })} */}
+      </div>
     </div>
   );
 }

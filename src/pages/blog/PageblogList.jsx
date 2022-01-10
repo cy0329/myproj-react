@@ -67,7 +67,7 @@ function PageblogList() {
   };
 
   return (
-    <div className="">
+    <div className="bg-slate-200 p-3 rounded shadow">
       <h2>Blog List</h2>
       {loading && <div>Loading...</div>}
       {error && <div>통신 중에 오류가 발생했습니다.</div>}
@@ -84,7 +84,6 @@ function PageblogList() {
       >
         새 포스팅
       </button>
-
       {postList.map((post) => (
         <BlogDetail
           key={post.id}
@@ -93,7 +92,6 @@ function PageblogList() {
           handleDelete={() => deletePost(post)}
         />
       ))}
-
       <hr />
       <DebugStates loading={loading} error={error} postList={postList} />
     </div>
