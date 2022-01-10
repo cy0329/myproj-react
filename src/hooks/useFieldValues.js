@@ -1,19 +1,28 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 function useFieldValues(initialFieldValues) {
   const [fieldValues, setFieldValues] = useState(initialFieldValues);
 
-  const handleChange = (e) => {
+  // 함수 객체를 생성할 때, 의존성이 걸린 값이 변경시에만 함수를 재생성
+
+  const handleFieldChange = useCallback((e) => {
     const { name, value } = e.target;
     setFieldValues((prevFieldValues) => ({
       ...prevFieldValues,
       [name]: value,
     }));
+  }, []);
+
+  const clearFieldValues = useCallback(() => {
+    setFieldValues(initialFieldValues);
+  }, []);
+
+  return {
+    fieldValues,
+    handleFieldChange,
+    clearFieldValues,
+    setFieldValues,
   };
-
-  const clearFieldValues = () => setFieldValues(initialFieldValues);
-
-  return [fieldValues, handleChange, clearFieldValues, setFieldValues];
 }
 
 export default useFieldValues;
