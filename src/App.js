@@ -8,6 +8,7 @@ import ReviewList from 'pages/reviews/ReviewList';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import PageReviewForm from 'pages/reviews/PageReviewFormSol';
+import Pageblog from 'pages/blog/Pageblog';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/reviews/new/" element={<PageReviewForm />} />
         <Route path="/reviews/:reviewId/edit/" element={<PageReviewForm />} />
         <Route path="/examples/components/" element={<Components />} />
+        <Route path="/blog/" element={<Pageblog />} />
       </Routes>
     </div>
   );
