@@ -9,7 +9,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import PageReviewForm from 'pages/reviews/PageReviewFormSol';
 import PageblogList from 'pages/blog/PageblogList';
 import PageblogForm from 'pages/blog/PageblogForm';
-import BlogDetail from 'components/blog/BlogDetail';
+import PostDetail from 'components/blog/PostDetail';
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
         {/* 여기부터 블로그 */}
         <Route path="/blogs/" element={<PageblogList />} />
         <Route path="/blogs/new/" element={<PageblogForm />} />
-        <Route path="/blogs/:blogId/" element={<BlogDetail />} />
+        <Route path="/blogs/:blogId/" element={<PostDetail />} />
         <Route path="/blogs/:blogId/edit/" element={<PageblogForm />} />
       </Routes>
     </div>

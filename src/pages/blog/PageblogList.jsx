@@ -62,6 +62,7 @@ function PageblogList() {
       })
       .finally(() => {
         setLoading(false);
+        navigate('/blogs/');
       });
   };
 

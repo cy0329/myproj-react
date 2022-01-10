@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 function BlogDetail({ post, handleEdit, handleDelete }) {
   const { title } = post;
   const { id: postId } = post;
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   return (
     <div className="bg-yellow-100 border border-yellow-400 my-1 p-1">
       <div>
@@ -24,6 +24,7 @@ function BlogDetail({ post, handleEdit, handleDelete }) {
         onClick={() => {
           navigate(`/blogs/${postId}/`);
         }}
+        className="px-2 py-1 rounded hover:bg-blue-200 cursor-pointer"
       >
         {title}
       </span>
