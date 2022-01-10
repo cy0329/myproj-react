@@ -2,6 +2,7 @@ import Axios from 'axios';
 // import useFieldValues from 'hooks/useFieldValues';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import DebugStates from 'components/DebugStates';
 
 function ReviewForm() {
   const navigate = useNavigate();
@@ -107,6 +108,7 @@ function ReviewForm() {
       >
         돌아가기
       </button>
+      <DebugStates reviewId={reviewId} />
     </div>
   );
 }
