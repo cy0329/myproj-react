@@ -38,7 +38,7 @@ function PageblogList() {
   };
 
   const editPost = (editingPost) => {
-    navigate(`/blog/${editingPost.id}/edit/`);
+    navigate(`/blogs/${editingPost.id}/edit/`);
   };
 
   const deletePost = (deletingPost) => {
