@@ -38,9 +38,10 @@ function PostDetail() {
 
   return (
     <div>
-      <div className="block bg-gray-200">{post.title}</div>
-
-      {post.content}
+      <div className="block bg-blue-200 text-center py-2 mb-2">
+        {post.title}
+      </div>
+      <div className="block bg-green-100 px-2 py-1">{post.content}</div>
     </div>
   );
 }
