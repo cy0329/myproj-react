@@ -46,26 +46,23 @@ function ReviewForm() {
     }
   }, [reviewId]);
 
-  const saveReview = () => {
-    const url = 'http://127.0.0.1:8000/shop/api/reviews/';
-    const detailUrl = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
-    reviewId
-      ? Axios.patch(detailUrl, fieldValues)
-          .then(() => {
-            navigate('/reviews/');
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-          .finally(() => clearFieldValues())
-      : Axios.post(url, fieldValues)
-          .then(() => {
-            navigate('/reviews/');
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-          .finally(() => clearFieldValues());
+  // sol 보고 비교하며 고쳐보기
+  const saveReview = async () => {
+    setErrorObject(null);
+    const url = !reviewId
+      ? 'http://127.0.0.1:8000/shop/api/reviews/'
+      : `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
+    try {
+      if (!reviewId) {
+        await Axios.post(url, fieldValues);
+      } else {
+        await Axios.put(url, fieldValues);
+      }
+      navigate('/reviews/');
+    } catch (e) {
+      setErrorObject(e);
+      console.error(e);
+    }
   };
 
   return (

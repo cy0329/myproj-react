@@ -11,13 +11,14 @@ function PageReviewForm() {
   // 상탯값 정의. 훅 호출
   const navigate = useNavigate();
   const { reviewId } = useParams();
-  const { fieldValues, handleFieldChange, setFieldValues } = useFieldValues({
-    score: 5,
-    content: '',
-  });
+  const { fieldValues, handleFieldChange, setFieldValues, clearFieldValues } =
+    useFieldValues({
+      score: 5,
+      content: '',
+    });
 
   useEffect(() => {
-    const fn = async () => {
+    const fetchReview = async () => {
       setLoading(true);
       setError(null);
 
@@ -30,17 +31,25 @@ function PageReviewForm() {
       }
       setLoading(false);
     };
-    fn();
-  }, [reviewId, setFieldValues]);
+    if (reviewId) fetchReview();
+    else clearFieldValues();
+  }, [reviewId, setFieldValues, clearFieldValues]);
 
   // 다양한 함수를 정의
   const saveReview = async () => {
     setLoading(true);
     setError(null);
 
-    const url = 'http://127.0.0.1:8000/shop/api/reviews/';
+    const url = !reviewId
+      ? 'http://127.0.0.1:8000/shop/api/reviews/'
+      : `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
+
     try {
-      await Axios.post(url, fieldValues);
+      if (!reviewId) {
+        await Axios.post(url, fieldValues);
+      } else {
+        await Axios.put(url, fieldValues);
+      }
       navigate('/reviews/');
     } catch (e) {
       setError(e);
