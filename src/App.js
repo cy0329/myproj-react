@@ -10,32 +10,46 @@ import PageReviewForm from 'pages/reviews/PageReviewFormSol';
 import PageblogList from 'pages/blog/PageblogList';
 import PageblogForm from 'pages/blog/PageblogForm';
 import PostDetail from 'components/blog/PostDetail';
+import Clock from 'pages/examples/Clock';
+import useWindowWidth from 'hooks/useWindowWidth';
+import CssModule from 'pages/examples/CssModule';
 
 function App() {
+  const windowWidth = useWindowWidth();
   return (
-    <div className="app">
-      <TopNav />
-      <Routes>
-        <Route path="/" element={<Navigate to="/reviews/" />} />
-        <Route path="/accounts/login/" element={<Login />} />
-        <Route path="/accounts/profile/" element={<Profile />} />
-        <Route path="/reviews/" element={<ReviewList />} />
-        {/* 솔루션 방식(스타일링 거의 없음) */}
-        <Route path="/reviews/new/" element={<PageReviewForm />} />
-        <Route path="/reviews/:reviewId/edit/" element={<PageReviewForm />} />
+    <>
+      <div className="app">
+        <TopNav />
+        <Routes>
+          <Route path="/" element={<Navigate to="/reviews/" />} />
+          <Route path="/accounts/login/" element={<Login />} />
+          <Route path="/accounts/profile/" element={<Profile />} />
+          <Route path="/reviews/" element={<ReviewList />} />
+          {/* 솔루션 방식(스타일링 거의 없음) */}
+          <Route path="/reviews/new/" element={<PageReviewForm />} />
+          <Route path="/reviews/:reviewId/edit/" element={<PageReviewForm />} />
 
-        {/* 내 방식 */}
-        {/* <Route path="/reviews/new/" element={<ReviewForm />} />
+          {/* 내 방식 */}
+          {/* <Route path="/reviews/new/" element={<ReviewForm />} />
         <Route path="/reviews/:reviewId/edit/" element={<ReviewForm />} /> */}
-        <Route path="/examples/components/" element={<Components />} />
 
-        {/* 여기부터 블로그 */}
-        <Route path="/blogs/" element={<PageblogList />} />
-        <Route path="/blogs/new/" element={<PageblogForm />} />
-        <Route path="/blogs/:postId/" element={<PostDetail />} />
-        <Route path="/blogs/:postId/edit/" element={<PageblogForm />} />
+          {/* 여기부터 블로그 */}
+          <Route path="/blogs/" element={<PageblogList />} />
+          <Route path="/blogs/new/" element={<PageblogForm />} />
+          <Route path="/blogs/:postId/" element={<PostDetail />} />
+          <Route path="/blogs/:postId/edit/" element={<PageblogForm />} />
+
+          {/* examples */}
+          <Route path="/examples/components/" element={<Components />} />
+          <Route path="/examples/css-module/" element={<CssModule />} />
+        </Routes>
+        <hr />
+        윈도우 가로크기 : {windowWidth}px
+      </div>
+      <Routes>
+        <Route path="/examples/clock/" element={<Clock />} />
       </Routes>
-    </div>
+    </>
   );
 }
 

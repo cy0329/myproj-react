@@ -17,7 +17,13 @@ function TopNav() {
           <MyLink to="/blogs/">블로그</MyLink>
         </li>
         <li>
-          <MyLink to="/examples/components">컴포넌트 예시</MyLink>
+          <MyLink to="/examples/components/">컴포넌트 예시</MyLink>
+        </li>
+        <li>
+          <MyLink to="/examples/clock/">시계</MyLink>
+        </li>
+        <li>
+          <MyLink to="/examples/css-module/">CssModule</MyLink>
         </li>
       </ul>
     </div>
