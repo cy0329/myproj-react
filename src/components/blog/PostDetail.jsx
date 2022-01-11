@@ -1,12 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { axiosInstance } from 'api/base';
+import { useNavigate } from 'react-router-dom';
 
 function PostDetail() {
   const { postId } = useParams();
   const [post, setPost] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     refetch();
@@ -44,6 +46,12 @@ function PostDetail() {
       </div>
       <img src="https://placeimg.com/640/480/animals" alt="" />
       <div className="mt-2 block bg-green-100 px-2 py-1">{post.content}</div>
+      <button
+        onClick={() => navigate('/blogs/')}
+        className="my-5 bg-yellow-100 hover:bg-red-200 rounded px-2 py-1 cursor-pointer"
+      >
+        홈으로
+      </button>
     </div>
   );
 }

@@ -57,10 +57,7 @@ function PageblogForm() {
 
   return (
     <div>
-      <h2>
-        BlogPostForm
-        {postId ? '<<수정>>' : '<<생성>>'}
-      </h2>
+      <h2>블로그 글쓰기 : {postId ? '<<수정>>' : '<<생성>>'}</h2>
       <PostForm
         fieldValues={fieldValues}
         handleFieldChange={handleFieldChange}

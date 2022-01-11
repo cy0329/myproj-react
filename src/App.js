@@ -52,8 +52,8 @@ function App() {
             element={<ContextApiSample2 />}
           /> */}
         </Routes>
-        <hr />
-        윈도우 가로크기 : {windowWidth}px
+        {/* <hr />
+        윈도우 가로크기 : {windowWidth}px */}
       </div>
       {/* <Routes>
         <Route path="/examples/clock/" element={<Clock />} />
