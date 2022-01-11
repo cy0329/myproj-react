@@ -3,12 +3,14 @@ import DebugStates from 'components/DebugStates';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { axiosInstance } from 'api/base';
+import useFieldValues from 'hooks/useFieldValues';
 
 function PageblogList() {
   const [postList, setPostList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { fieldValues, handleFieldChange } = useFieldValues('');
 
   useEffect(() => {
     refetch();
@@ -68,24 +70,51 @@ function PageblogList() {
       });
   };
 
+  const queryPost = (e) => {
+    const query = fieldValues.query;
+    if (e.key === 'Enter') {
+      if (query === '') {
+        refetch();
+      } else {
+        const url = `/blog/api/posts/`;
+        axiosInstance
+          .get(url)
+          .then(({ data }) => {
+            console.log(data);
+            setPostList(data.filter(({ title }) => title.indexOf(query) > 0));
+          })
+          .catch((error) => setError(error));
+      }
+    }
+  };
+
   return (
     <div className="bg-slate-200 p-3 rounded shadow">
-      <h2>Blog List</h2>
+      <h2 className="text-lg font-extrabold">블로그 포스팅</h2>
+      <input
+        name="query"
+        value={fieldValues.query}
+        className="block rounded w-full py-1 px-2 border border-black mb-2"
+        placeholder="검색어를 입력해주세요."
+        onChange={(e) => handleFieldChange(e)}
+        onKeyPress={(e) => queryPost(e)}
+      />
       {loading && <div>Loading...</div>}
       {error && <div>통신 중에 오류가 발생했습니다.</div>}
-
-      <button
-        onClick={() => refetch()}
-        className="bg-yellow-400 hover:bg-red-300 mr-2 rounded p-2"
-      >
-        새로고침
-      </button>
-      <button
-        onClick={() => navigate('/blogs/new/')}
-        className="bg-blue-400 hover:bg-slate-400 rounded p-2"
-      >
-        새 포스팅
-      </button>
+      <div className="mb-2">
+        <button
+          onClick={() => refetch()}
+          className="bg-yellow-400 hover:bg-red-300 mr-2 rounded p-2"
+        >
+          새로고침
+        </button>
+        <button
+          onClick={() => navigate('/blogs/new/')}
+          className="bg-blue-400 hover:bg-slate-400 rounded p-2"
+        >
+          새 포스팅
+        </button>
+      </div>
       {postList.map((post) => (
         <PageBlogDetail
           key={post.id}
@@ -94,7 +123,7 @@ function PageblogList() {
           handleDelete={() => deletePost(post)}
         />
       ))}
-      <hr />
+      <div className="mb-2"></div>
       <DebugStates loading={loading} error={error} postList={postList} />
     </div>
   );
