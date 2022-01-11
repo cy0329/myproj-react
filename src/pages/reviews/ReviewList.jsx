@@ -17,7 +17,7 @@ function PageReviewList() {
   const refetch = () => {
     setError(null);
     setLoading(true);
-    const url = 'http://127.0.0.1:8000/shop/api/reviews/';
+    const url = `${API_HOST}/shop/api/reviews/`;
     // Promise 객체 --> then, catch 지원, 체이닝 가능
     Axios.get(url)
       .then(({ data }) => {
@@ -43,7 +43,7 @@ function PageReviewList() {
 
   const deleteReview = (deletingReview) => {
     const { id: deletingReviewId } = deletingReview;
-    const url = `http://127.0.0.1:8000/shop/api/reviews/${deletingReviewId}/`;
+    const url = `${API_HOST}/shop/api/reviews/${deletingReviewId}/`;
 
     setLoading(true);
     setError(null);

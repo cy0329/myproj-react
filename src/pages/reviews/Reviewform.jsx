@@ -31,7 +31,7 @@ function ReviewForm() {
 
   useEffect(() => {
     if (reviewId) {
-      const url = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
+      const url = `${API_HOST}/shop/api/reviews/${reviewId}/`;
       Axios.get(url)
         .then(({ data }) => {
           setFieldValues((prevFieldValues) => ({
@@ -50,8 +50,8 @@ function ReviewForm() {
   const saveReview = async () => {
     setErrorObject(null);
     const url = !reviewId
-      ? 'http://127.0.0.1:8000/shop/api/reviews/'
-      : `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
+      ? `${API_HOST}/shop/api/reviews/`
+      : `${API_HOST}/shop/api/reviews/${reviewId}/`;
     try {
       if (!reviewId) {
         await Axios.post(url, fieldValues);

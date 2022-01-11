@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import { API_HOST } from 'Constants';
 
 function PostDetail() {
   const { postId } = useParams();
@@ -16,7 +17,7 @@ function PostDetail() {
     setError(null);
     setLoading(true);
 
-    const url = `http://127.0.0.1:8000/blog/api/posts/${postId}/`;
+    const url = `${API_HOST}/blog/api/posts/${postId}/`;
     // Promise 객체 --> then, catch 지원, 체이닝 가능
     await Axios.get(url)
       .then(({ data }) => {

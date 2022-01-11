@@ -3,6 +3,7 @@ import BlogDetail from 'components/blog/BlogDetail';
 import DebugStates from 'components/DebugStates';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_HOST } from 'Constants';
 
 function PageblogList() {
   const [postList, setPostList] = useState([]);
@@ -17,7 +18,7 @@ function PageblogList() {
   const refetch = () => {
     setError(null);
     setLoading(true);
-    const url = 'http://127.0.0.1:8000/blog/api/posts/';
+    const url = `${API_HOST}/blog/api/posts/`;
     // Promise 객체 --> then, catch 지원, 체이닝 가능
     Axios.get(url)
       .then(({ data }) => {
@@ -43,7 +44,7 @@ function PageblogList() {
 
   const deletePost = (deletingPost) => {
     const { id: deletingPostId } = deletingPost;
-    const url = `http://127.0.0.1:8000/blog/api/posts/${deletingPostId}/`;
+    const url = `${API_HOST}/blog/api/posts/${deletingPostId}/`;
 
     setLoading(true);
     setError(null);

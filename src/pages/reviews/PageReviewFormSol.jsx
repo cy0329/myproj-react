@@ -22,7 +22,7 @@ function PageReviewForm() {
       setLoading(true);
       setError(null);
 
-      const url = `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
+      const url = `${API_HOST}/shop/api/reviews/${reviewId}/`;
       try {
         const response = await Axios.get(url);
         setFieldValues(response.data);
@@ -41,8 +41,8 @@ function PageReviewForm() {
     setError(null);
 
     const url = !reviewId
-      ? 'http://127.0.0.1:8000/shop/api/reviews/'
-      : `http://127.0.0.1:8000/shop/api/reviews/${reviewId}/`;
+      ? `${API_HOST}/shop/api/reviews/`
+      : `${API_HOST}/shop/api/reviews/${reviewId}/`;
 
     try {
       if (!reviewId) {
