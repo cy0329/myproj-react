@@ -4,6 +4,7 @@
 
 function ReviewFormC({
   fieldValues,
+  errorMessages,
   handleFieldChange,
   handleSubmit,
   loading,
@@ -33,14 +34,16 @@ function ReviewFormC({
           <option>4</option>
           <option>5</option>
         </select>
+        <div className="text-red-400">{errorMessages.score}</div>
       </div>
       <div>
         <textarea
           name="content"
           value={fieldValues.content}
           onChange={handleFieldChange}
-          className="bg-gray-100 border border-gray-400"
+          className="px-1 bg-gray-100 border border-gray-400"
         />
+        <div className="text-red-400">{errorMessages.content}</div>
       </div>
       <div>
         <button
@@ -49,7 +52,7 @@ function ReviewFormC({
           onClick={() => handleClickedSubmitButton()}
           disabled={loading}
         >
-          {loading && '로딩 아이콘'}
+          {loading && 'Loading...'}
           저장하기
         </button>
       </div>

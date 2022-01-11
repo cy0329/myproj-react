@@ -1,4 +1,4 @@
-import './CssModule.css';
+import './CssModule.scss';
 // import Styles from './CssModule.module.css';
 
 function CssModule() {

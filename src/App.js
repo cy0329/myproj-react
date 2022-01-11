@@ -13,6 +13,7 @@ import PostDetail from 'components/blog/PostDetail';
 import Clock from 'pages/examples/Clock';
 import useWindowWidth from 'hooks/useWindowWidth';
 import CssModule from 'pages/examples/CssModule';
+import CssInJs from 'pages/examples/CssInJs';
 
 function App() {
   const windowWidth = useWindowWidth();
@@ -42,6 +43,7 @@ function App() {
           {/* examples */}
           <Route path="/examples/components/" element={<Components />} />
           <Route path="/examples/css-module/" element={<CssModule />} />
+          <Route path="/examples/css-in-js/" element={<CssInJs />} />
         </Routes>
         <hr />
         윈도우 가로크기 : {windowWidth}px

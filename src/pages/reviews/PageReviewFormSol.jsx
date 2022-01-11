@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 import { axiosInstance } from 'api/base';
 
 function PageReviewForm() {
+  // 상탯값 정의. 훅 호출
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  // 상탯값 정의. 훅 호출
   const navigate = useNavigate();
   const { reviewId } = useParams();
   const { fieldValues, handleFieldChange, setFieldValues, clearFieldValues } =
@@ -16,6 +16,8 @@ function PageReviewForm() {
       score: 5,
       content: '',
     });
+
+  const [errorMessages, setErrorMessages] = useState({});
 
   useEffect(() => {
     const fetchReview = async () => {
@@ -39,6 +41,7 @@ function PageReviewForm() {
   const saveReview = async () => {
     setLoading(true);
     setError(null);
+    setErrorMessages({});
 
     const url = !reviewId
       ? `/shop/api/reviews/`
@@ -54,6 +57,8 @@ function PageReviewForm() {
     } catch (e) {
       setError(e);
       console.error(e);
+
+      setErrorMessages(e.response.data);
     }
     setLoading(false);
   };
@@ -67,11 +72,16 @@ function PageReviewForm() {
       </h2>
       <ReviewFormC
         fieldValues={fieldValues}
+        errorMessages={errorMessages}
         handleFieldChange={handleFieldChange}
         handleSubmit={saveReview}
         loading={loading}
       />
-      <DebugStates reviewId={reviewId} fieldValues={fieldValues} />
+      <DebugStates
+        reviewId={reviewId}
+        fieldValues={fieldValues}
+        errorMessages={errorMessages}
+      />
     </div>
   );
 }

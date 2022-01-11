@@ -25,6 +25,9 @@ function TopNav() {
         <li>
           <MyLink to="/examples/css-module/">CssModule</MyLink>
         </li>
+        <li>
+          <MyLink to="/examples/css-in-js/">CssInJs</MyLink>
+        </li>
       </ul>
     </div>
   );
