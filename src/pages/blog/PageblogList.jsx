@@ -1,4 +1,4 @@
-import BlogDetail from 'components/blog/BlogDetail';
+import BlogDetail from 'pages/blog/PageblogDetail';
 import DebugStates from 'components/DebugStates';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
