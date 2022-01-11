@@ -45,7 +45,16 @@ function PostDetail() {
         {post.title}
       </div>
       <img src="https://placeimg.com/640/480/animals" alt="" />
-      <div className="mt-2 block bg-green-100 px-2 py-1">{post.content}</div>
+      <div>
+        <div className="mt-2 block bg-green-100 px-2 py-1">
+          {post.content?.split('\n').map((letter) => (
+            <>
+              {letter}
+              <br />
+            </>
+          ))}
+        </div>
+      </div>
       <button
         onClick={() => navigate('/blogs/')}
         className="my-5 bg-yellow-100 hover:bg-red-200 rounded px-2 py-1 cursor-pointer"
