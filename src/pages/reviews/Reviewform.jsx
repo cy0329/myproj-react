@@ -1,8 +1,8 @@
-import Axios from 'axios';
 // import useFieldValues from 'hooks/useFieldValues';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import DebugStates from 'components/DebugStates';
+import { axiosInstance } from 'api/base';
 
 function ReviewForm() {
   const navigate = useNavigate();
@@ -31,8 +31,9 @@ function ReviewForm() {
 
   useEffect(() => {
     if (reviewId) {
-      const url = `${API_HOST}/shop/api/reviews/${reviewId}/`;
-      Axios.get(url)
+      const url = `/shop/api/reviews/${reviewId}/`;
+      axiosInstance
+        .get(url)
         .then(({ data }) => {
           setFieldValues((prevFieldValues) => ({
             ...prevFieldValues,
@@ -50,13 +51,13 @@ function ReviewForm() {
   const saveReview = async () => {
     setErrorObject(null);
     const url = !reviewId
-      ? `${API_HOST}/shop/api/reviews/`
-      : `${API_HOST}/shop/api/reviews/${reviewId}/`;
+      ? `/shop/api/reviews/`
+      : `/shop/api/reviews/${reviewId}/`;
     try {
       if (!reviewId) {
-        await Axios.post(url, fieldValues);
+        await axiosInstance.post(url, fieldValues);
       } else {
-        await Axios.put(url, fieldValues);
+        await axiosInstance.put(url, fieldValues);
       }
       navigate('/reviews/');
     } catch (e) {

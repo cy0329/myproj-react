@@ -1,9 +1,8 @@
-import Axios from 'axios';
 import BlogDetail from 'components/blog/BlogDetail';
 import DebugStates from 'components/DebugStates';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { API_HOST } from 'Constants';
+import { axiosInstance } from 'api/base';
 
 function PageblogList() {
   const [postList, setPostList] = useState([]);
@@ -18,9 +17,10 @@ function PageblogList() {
   const refetch = () => {
     setError(null);
     setLoading(true);
-    const url = `${API_HOST}/blog/api/posts/`;
+    const url = `/blog/api/posts/`;
     // Promise 객체 --> then, catch 지원, 체이닝 가능
-    Axios.get(url)
+    axiosInstance
+      .get(url)
       .then(({ data }) => {
         console.group('정상 응답');
         console.log(data);
@@ -44,12 +44,13 @@ function PageblogList() {
 
   const deletePost = (deletingPost) => {
     const { id: deletingPostId } = deletingPost;
-    const url = `${API_HOST}/blog/api/posts/${deletingPostId}/`;
+    const url = `/blog/api/posts/${deletingPostId}/`;
 
     setLoading(true);
     setError(null);
 
-    Axios.delete(url)
+    axiosInstance
+      .delete(url)
       .then(() => {
         console.log('삭제 성공');
         // 선택1 : 삭제된 항목만 상탯값에서 제거

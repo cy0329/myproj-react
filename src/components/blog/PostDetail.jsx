@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
-import Axios from 'axios';
 import { useEffect, useState } from 'react';
-import { API_HOST } from 'Constants';
+import { axiosInstance } from 'api/base';
 
 function PostDetail() {
   const { postId } = useParams();
@@ -17,9 +16,10 @@ function PostDetail() {
     setError(null);
     setLoading(true);
 
-    const url = `${API_HOST}/blog/api/posts/${postId}/`;
+    const url = `/blog/api/posts/${postId}/`;
     // Promise 객체 --> then, catch 지원, 체이닝 가능
-    await Axios.get(url)
+    await axiosInstance
+      .get(url)
       .then(({ data }) => {
         console.group('정상 응답');
         console.log(data);
