@@ -10,7 +10,7 @@ function PostDetail() {
 
   useEffect(() => {
     refetch();
-  });
+  }, []);
 
   const refetch = async () => {
     setError(null);
@@ -39,7 +39,7 @@ function PostDetail() {
 
   return (
     <div>
-      <div className="block bg-blue-200 text-center text-xl py-2 mb-2 rounded">
+      <div className="block bg-blue-200 text-center text-xl py-2 px-1 mb-2 rounded">
         {post.title}
       </div>
       <img src="https://placeimg.com/640/480/animals" alt="" />
