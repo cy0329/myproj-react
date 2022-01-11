@@ -1,4 +1,4 @@
-import BlogDetail from 'pages/blog/PageblogDetail';
+import PageBlogDetail from 'pages/blog/PageblogDetail';
 import DebugStates from 'components/DebugStates';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -87,7 +87,7 @@ function PageblogList() {
         새 포스팅
       </button>
       {postList.map((post) => (
-        <BlogDetail
+        <PageBlogDetail
           key={post.id}
           post={post}
           handleEdit={() => editPost(post)}

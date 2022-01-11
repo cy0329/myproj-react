@@ -1,6 +1,6 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function BlogDetail({ post, handleEdit, handleDelete }) {
+function PageBlogDetail({ post, handleEdit, handleDelete }) {
   const { title } = post;
   const { id: postId } = post;
   const navigate = useNavigate();
@@ -33,4 +33,4 @@ function BlogDetail({ post, handleEdit, handleDelete }) {
   );
 }
 
-export default BlogDetail;
+export default PageBlogDetail;

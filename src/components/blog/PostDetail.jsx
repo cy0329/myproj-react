@@ -10,7 +10,7 @@ function PostDetail() {
 
   useEffect(() => {
     refetch();
-  }, []);
+  });
 
   const refetch = async () => {
     setError(null);
@@ -43,17 +43,7 @@ function PostDetail() {
         {post.title}
       </div>
       <img src="https://placeimg.com/640/480/animals" alt="" />
-      <div className="mt-2 block bg-green-100 px-2 py-1">
-        {post.content}
-        {/* {post.content.split('\n\n').map((letter) => {
-          return (
-            <>
-              {letter}
-              <br />
-            </>
-          );
-        })} */}
-      </div>
+      <div className="mt-2 block bg-green-100 px-2 py-1">{post.content}</div>
     </div>
   );
 }

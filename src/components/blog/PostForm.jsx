@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-function BlogForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
+function PostForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
   const navigate = useNavigate();
   const handleClickedSubmitButton = () => {
     if (handleSubmit) {
@@ -52,4 +52,4 @@ function BlogForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
   );
 }
 
-export default BlogForm;
+export default PostForm;

@@ -43,21 +43,21 @@ function App() {
           <Route path="/blogs/:postId/edit/" element={<PageblogForm />} />
 
           {/* examples */}
-          <Route path="/examples/components/" element={<Components />} />
+          {/* <Route path="/examples/components/" element={<Components />} />
           <Route path="/examples/css-module/" element={<CssModule />} />
           <Route path="/examples/css-in-js/" element={<CssInJs />} />
           <Route path="/examples/context-api/" element={<ContextApiSample />} />
           <Route
             path="/examples/context-api-2/"
             element={<ContextApiSample2 />}
-          />
+          /> */}
         </Routes>
         <hr />
         윈도우 가로크기 : {windowWidth}px
       </div>
-      <Routes>
+      {/* <Routes>
         <Route path="/examples/clock/" element={<Clock />} />
-      </Routes>
+      </Routes> */}
     </>
   );
 }
