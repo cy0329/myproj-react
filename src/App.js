@@ -9,7 +9,6 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import PageReviewForm from 'pages/reviews/PageReviewFormSol';
 import PageblogList from 'pages/blog/PageblogList';
 import PageblogForm from 'pages/blog/PageblogForm';
-import PostDetail from 'components/blog/PostDetail';
 import Clock from 'pages/examples/Clock';
 import useWindowWidth from 'hooks/useWindowWidth';
 import CssModule from 'pages/examples/CssModule';
@@ -19,6 +18,7 @@ import ContextApiSample2 from 'pages/examples/ContextApiSample2';
 import PageNewsIndex from 'pages/news/PageNewsIndex';
 import PageNewsArticleDetail from 'pages/news/PageNewsArticleDetail';
 import PageNewsArticleForm from 'pages/news/PageNewsArticleForm';
+import PageBlogDetail from 'pages/blog/PageblogDetail';
 
 function App() {
   const windowWidth = useWindowWidth();
@@ -42,7 +42,7 @@ function App() {
           {/* 블로그(포스트) */}
           <Route path="/blogs/" element={<PageblogList />} />
           <Route path="/blogs/new/" element={<PageblogForm />} />
-          <Route path="/blogs/:postId/" element={<PostDetail />} />
+          <Route path="/blogs/:postId/" element={<PageBlogDetail />} />
           <Route path="/blogs/:postId/edit/" element={<PageblogForm />} />
 
           {/* 뉴스(아티클) */}
