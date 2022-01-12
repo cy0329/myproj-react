@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 
 function PostList() {
   const navigate = useNavigate();
-  const [queryData, setQueryData] = useState({});
+  const [queryData, setQueryData] = useState([]);
   const [{ data: postList, loading, error }, refetch] =
     useApiAxios('/blog/api/posts/');
 
@@ -26,9 +26,7 @@ function PostList() {
       if (query === '') {
         refetch();
       } else {
-        refetch((response) =>
-          response.data.filter(({ title }) => title.indexOf(query) > 0),
-        );
+        setQueryData(fieldValues.query);
       }
     }
   };
@@ -61,17 +59,11 @@ function PostList() {
           새 포스팅
         </button>
       </div>
-      {/* {queryData &&
-        queryData.map((queryPost) => (
-          <div className="rounded border border-gray-400 p-2 bg-white mb-2">
-            <Link to={`/blogs/${queryPost.id}/`}>
-              <p className="text-center hover:bg-green-200 rounded p-1">
-                {queryPost.title}
-              </p>
-            </Link>
-          </div>
-        ))} */}
-
+      <div>
+        {useEffect(() => {
+          queryData.map((qd) => <PostSummary key={qd.id} post={qd} />);
+        }, [queryData])}
+      </div>
       {postList &&
         postList.map((post) => <PostSummary key={post.id} post={post} />)}
       <div className="mb-2"></div>
