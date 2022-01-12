@@ -16,6 +16,8 @@ import CssModule from 'pages/examples/CssModule';
 import CssInJs from 'pages/examples/CssInJs';
 import ContextApiSample from 'pages/examples/ContextAPISample';
 import ContextApiSample2 from 'pages/examples/ContextApiSample2';
+import PageNewsIndex from 'pages/news/PageNewsIndex';
+import PageNewsArticleDetail from 'pages/news/PageNewsArticleDetail';
 
 function App() {
   const windowWidth = useWindowWidth();
@@ -24,23 +26,27 @@ function App() {
       <div className="app">
         <TopNav />
         <Routes>
-          <Route path="/" element={<Navigate to="/reviews/" />} />
+          <Route path="/" element={<Navigate to="/accounts/login/" />} />
           <Route path="/accounts/login/" element={<Login />} />
           <Route path="/accounts/profile/" element={<Profile />} />
           <Route path="/reviews/" element={<ReviewList />} />
+          {/* 샵(리뷰) */}
           {/* 솔루션 방식(스타일링 거의 없음) */}
           <Route path="/reviews/new/" element={<PageReviewForm />} />
           <Route path="/reviews/:reviewId/edit/" element={<PageReviewForm />} />
-
           {/* 내 방식 */}
           {/* <Route path="/reviews/new/" element={<ReviewForm />} />
         <Route path="/reviews/:reviewId/edit/" element={<ReviewForm />} /> */}
 
-          {/* 여기부터 블로그 */}
+          {/* 블로그(포스트) */}
           <Route path="/blogs/" element={<PageblogList />} />
           <Route path="/blogs/new/" element={<PageblogForm />} />
           <Route path="/blogs/:postId/" element={<PostDetail />} />
           <Route path="/blogs/:postId/edit/" element={<PageblogForm />} />
+
+          {/* 뉴스(아티클) */}
+          <Route path="/news/" element={<PageNewsIndex />} />
+          <Route path="/news/:articleId/" element={<PageNewsArticleDetail />} />
 
           {/* examples */}
           {/* <Route path="/examples/components/" element={<Components />} />
