@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { axiosInstance, useApiAxios } from 'api/base';
 import { useNavigate } from 'react-router-dom';
 import LoadingIndicator from 'components/LoadingIndicator';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function PostDetail({ postId }) {
