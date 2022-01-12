@@ -28,6 +28,8 @@ function ArticleDetail({ articleId }) {
       // REST_API에서는 DELETE요청에 대한 응답이 없습니다.
       deleteArticle().then(() => {
         navigate('/news/');
+        // 삭제되었습니다. --> 이런 메세지를 context API를 사용해서 해볼 수 있음
+        // flash message
       });
     }
   };
