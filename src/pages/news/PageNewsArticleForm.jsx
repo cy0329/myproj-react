@@ -6,7 +6,7 @@ function PageNewsArticleForm() {
   return (
     <ArticleForm
       articleId={null}
-      handledidSave={(savedPost) => navigate(`/news/${savedPost.id}`)}
+      handleDidSave={(savedPost) => navigate(`/news/${savedPost.id}/`)}
     />
   );
 }
