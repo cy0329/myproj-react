@@ -71,7 +71,7 @@ function PostForm({ postId, handleDidSave }) {
             name="content"
             value={fieldValues.content}
             onChange={handleFieldChange}
-            className="w-full pb-40 border border-gray-400 rounded"
+            className="w-full pb-40 px-2 border border-gray-400 rounded"
           />
           {saveErrorMessages.content?.map((message, index) => (
             <p key={index} className="text-xs text-red-400">

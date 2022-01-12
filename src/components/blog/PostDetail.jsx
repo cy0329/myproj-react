@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { axiosInstance, useApiAxios } from 'api/base';
 import { useNavigate } from 'react-router-dom';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function PostDetail({ postId }) {
   const navigate = useNavigate();
@@ -24,10 +26,20 @@ function PostDetail({ postId }) {
       { manual: true },
     );
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.preventDefault();
     if (window.confirm('정말 삭제하시겠습니까?')) {
       deletePost().then(() => {
         navigate('/blogs/');
+        toast.success('삭제가 완료되었습니다.', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         // 삭제되었습니다. --> 이런 메세지를 context API를 사용해서 해볼 수 있음
         // flash message
       });

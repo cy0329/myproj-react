@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { axiosInstance, useApiAxios } from 'api/base';
 import useFieldValues from 'hooks/useFieldValues';
 import PostSummary from './PostSummary';
+import { ToastContainer, toast } from 'react-toastify';
 
 function PostList() {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ function PostList() {
           />
         ))}
       <div className="mb-2"></div>
+      <ToastContainer />
       <DebugStates loading={loading} error={error} postList={postList} />
     </div>
   );
