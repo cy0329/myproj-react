@@ -34,6 +34,8 @@ function useApiAxios(config, options) {
   ];
 }
 
+// 교수님이 직접 구현해보신 useRequest함수 (직접 만들거나 사용법을 배운건 아님)
+
 function useRequest(resourceUrl, initialState, manual = false) {
   const [data, setData] = useState(initialState);
   const [loading, setLoading] = useState(false);
