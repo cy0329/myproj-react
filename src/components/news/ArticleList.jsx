@@ -1,10 +1,10 @@
-import useAxios from 'axios-hooks';
+import { useApiAxios } from 'api/base';
 import DebugStates from 'components/DebugStates';
 import ArticleSummary from './ArticleSummary';
 
 function ArticleList() {
-  const [{ data: articleList, loading, error }, refetch] = useAxios(
-    'http://localhost:8000/news/api/articles/',
+  const [{ data: articleList, loading, error }, refetch] = useApiAxios(
+    '/news/api/articles/',
   );
 
   return (
