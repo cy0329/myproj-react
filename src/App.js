@@ -18,6 +18,7 @@ import ContextApiSample from 'pages/examples/ContextAPISample';
 import ContextApiSample2 from 'pages/examples/ContextApiSample2';
 import PageNewsIndex from 'pages/news/PageNewsIndex';
 import PageNewsArticleDetail from 'pages/news/PageNewsArticleDetail';
+import PageNewsArticleForm from 'pages/news/PageNewsArticleForm';
 
 function App() {
   const windowWidth = useWindowWidth();
@@ -46,7 +47,12 @@ function App() {
 
           {/* 뉴스(아티클) */}
           <Route path="/news/" element={<PageNewsIndex />} />
+          <Route path="/news/new" element={<PageNewsArticleForm />} />
           <Route path="/news/:articleId/" element={<PageNewsArticleDetail />} />
+          <Route
+            path="/news/:articleId/edit"
+            element={<PageNewsArticleForm />}
+          />
 
           {/* examples */}
           {/* <Route path="/examples/components/" element={<Components />} />

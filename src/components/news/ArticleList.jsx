@@ -9,7 +9,7 @@ function ArticleList() {
 
   return (
     <div>
-      <h3>뉴스 기사 목록 보여줄 것</h3>
+      {/* 뉴스기사 보여주기 */}
       {loading && '로딩 중 ...'}
       {error && '로딩 중 에러가 발생했습니다.'}
       {articleList &&
