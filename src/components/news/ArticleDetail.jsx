@@ -46,6 +46,9 @@ function ArticleDetail({ articleId }) {
       {article && (
         <>
           <h3 className="text-2xl my-5">{article.title}</h3>
+          {article.photo && (
+            <img src={article.photo} alt={article.title} className="rounded" />
+          )}
           <div>
             {article.content.split(/[\r\n]+/).map((line, index) => (
               <p className="text-lg my-3" key={index}>
