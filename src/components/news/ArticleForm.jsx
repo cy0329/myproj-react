@@ -4,6 +4,8 @@ import H2 from 'components/H2';
 import LoadingIndicator from 'components/LoadingIndicator';
 import useFieldValues from 'hooks/useFieldValues';
 import { useApiAxios } from 'api/base';
+import { useEffect } from 'react';
+import produce from 'immer';
 
 const INIT_FIELD_VALUES = { title: '', content: '' };
 
@@ -36,9 +38,31 @@ function ArticleForm({ articleId, handleDidSave }) {
     { manual: true },
   );
 
-  const { fieldValues, handleFieldChange } = useFieldValues(
+  const { fieldValues, handleFieldChange, setFieldValues } = useFieldValues(
     article || INIT_FIELD_VALUES,
   );
+
+  useEffect(() => {
+    // 서버로 photo=null이 전달 되면 아래 오류가 발생
+    //  - fieldValues에서 photo만 제거해주면 됨
+    //  - photo=null이라면 빈 문자열로 변경
+    // setFieldValues((prevFieldVlaues) => ({
+    //   ...prevFieldVlaues,
+    //   photo: '',
+    // }));
+
+    // 인자 1개를 받는 함수를 리턴 : 원본
+    // 함수(원본) => 변경된 사본을 리턴
+    // const fn = produce((draft) => {
+    //   draft.photo = '';
+    // }),
+
+    setFieldValues(
+      produce((draft) => {
+        draft.photo = '';
+      }),
+    );
+  }, [article]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
