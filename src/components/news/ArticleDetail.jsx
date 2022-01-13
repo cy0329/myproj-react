@@ -8,7 +8,12 @@ function ArticleDetail({ articleId }) {
 
   const [{ data: article, loading, error }, refetch] = useApiAxios(
     `/news/api/articles/${articleId}`,
+    { manual: true },
   );
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const [{ loading: deleteLoading, error: deleteError }, deleteArticle] =
     useApiAxios(
@@ -18,10 +23,6 @@ function ArticleDetail({ articleId }) {
       },
       { manual: true },
     );
-
-  useEffect(() => {
-    refetch();
-  }, []);
 
   const handleDelete = () => {
     if (window.confirm('정말 삭제하시렵니까?')) {

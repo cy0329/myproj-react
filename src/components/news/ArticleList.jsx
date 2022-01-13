@@ -6,6 +6,7 @@ import ArticleSummary from './ArticleSummary';
 function ArticleList() {
   const [{ data: articleList, loading, error }, refetch] = useApiAxios(
     '/news/api/articles/',
+    { manual: true },
   );
 
   useEffect(() => {
