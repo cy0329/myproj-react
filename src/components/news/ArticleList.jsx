@@ -18,7 +18,9 @@ function ArticleList() {
       {loading && '로딩 중 ...'}
       {error && '로딩 중 에러가 발생했습니다.'}
       {articleList &&
-        articleList.map((article) => <ArticleSummary article={article} />)}
+        articleList.map((article) => (
+          <ArticleSummary key={article.id} article={article} />
+        ))}
       <DebugStates articleList={articleList} loading={loading} error={error} />
     </div>
   );
