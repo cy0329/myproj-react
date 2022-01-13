@@ -7,7 +7,7 @@ function ArticleDetail({ articleId }) {
   const navigate = useNavigate();
 
   const [{ data: article, loading, error }, refetch] = useApiAxios(
-    `/news/api/articles/${articleId}`,
+    `/news/api/articles/${articleId}/`,
     { manual: true },
   );
 
@@ -18,7 +18,7 @@ function ArticleDetail({ articleId }) {
   const [{ loading: deleteLoading, error: deleteError }, deleteArticle] =
     useApiAxios(
       {
-        url: `/news/api/articles/${articleId}`,
+        url: `/news/api/articles/${articleId}/`,
         method: 'DELETE',
       },
       { manual: true },
