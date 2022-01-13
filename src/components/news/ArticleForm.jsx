@@ -42,9 +42,21 @@ function ArticleForm({ articleId, handleDidSave }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // fieldValues : 객체 ( 파일을 제외 )
+    // 파일을 업로드 하려면, formData(라는 클래스가 있다.) 인스턴스를 써야...
+    const formData = new FormData();
+    Object.entries(fieldValues).forEach(([name, value]) => {
+      if (Array.isArray(value)) {
+        const fileList = value;
+        // 아랫줄에서 name은 키가 아니라 필드명 -> 파일 여러개 넘겨줌
+        fileList.forEach((file) => formData.append(name, file));
+      } else {
+        formData.append(name, value);
+      }
+    });
 
     saveRequest({
-      data: fieldValues,
+      data: formData,
     }).then((response) => {
       const savedPost = response.data;
       if (handleDidSave) handleDidSave(savedPost);
@@ -83,6 +95,20 @@ function ArticleForm({ articleId, handleDidSave }) {
             className="p-1 bg-gray-100 w-full h-80 outline-none focus:border focus:border-gray-400 focus:border-dashed"
           />
           {saveErrorMessages.content?.map((message, index) => (
+            <p key={index} className="text-xs text-red-400">
+              {message}
+            </p>
+          ))}
+        </div>
+        <div className="my-3">
+          <input
+            type="file"
+            accept=".png, .jpg, .jpeg"
+            name="photo"
+            // value 는 지정하면 안됨 -> 파일의 경우에는 url로 가지고 있기 때문에
+            onChange={handleFieldChange}
+          />
+          {saveErrorMessages.photo?.map((message, index) => (
             <p key={index} className="text-xs text-red-400">
               {message}
             </p>

@@ -5,11 +5,11 @@ function useFieldValues(initialValues) {
 
   // 함수 객체를 생성할 때, 의존성이 걸린 값이 변경시에만 함수를 재생성
   const handleFieldChange = useCallback((e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     setFieldValues((prevFieldValues) => {
       return {
         ...prevFieldValues,
-        [name]: value,
+        [name]: (files && Array.from(files)) || value,
       };
     });
   }, []);
