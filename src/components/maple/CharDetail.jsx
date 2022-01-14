@@ -1,5 +1,4 @@
 import { useApiAxios } from 'api/base';
-import H3 from 'components/H3';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -45,24 +44,28 @@ function CharDetail({ charId }) {
 
   return (
     <>
-      <div className="mb-5 shadow-xl rounded py-2">
-        {loading && <LoadingIndicator>로딩 중</LoadingIndicator>}
+      <div className="mb-5">
+        {loading && <LoadingIndicator>삭제 중</LoadingIndicator>}
+        {deleteLoading && <LoadingIndicator>삭제 중</LoadingIndicator>}
         {error &&
           `로딩 중 에러가 발생했습니다. (${error.response.status} ${error.response.stateText})`}
-        <div className="mb-2">
+        {deleteError &&
+          `삭제 요청 중 에러가 발생했습니다. (${deleteError.response.status} ${deleteError.response.statusText})`}
+
+        <div className="px-1 pb-3 shadow-lg shadow-purple-200 rounded-lg">
           {character && (
-            <div className="px-1">
-              <h1 className="text-center text-extrabold text-2xl">
+            <>
+              <h1 className="text-center text-extrabold text-2xl underline underline-offset-4 mb-3">
                 {character.job}
               </h1>
               {character.photo && (
                 <img
                   src={character.photo}
                   alt="등록된 사진이 없습니다."
-                  className="rounded-lg mb-2 mx-auto"
+                  className="rounded-lg mb-2 mx-auto shadow"
                 />
               )}
-              <div className="shadow-lg px-2 py-1 rounded-lg border-gray-800 mx-2 mb-3">
+              <div className="shadow-lg shadow-purple-200 hover:bg-purple-50 px-2 py-1 rounded-lg border-gray-800 mx-2 mb-3">
                 {character.description.split('\n').map((letter) => (
                   <>
                     {letter}
@@ -176,25 +179,25 @@ function CharDetail({ charId }) {
               <h2 className="border-2 border-purple-400 rounded text-xl text-extrabold inline px-2 mx-2">
                 보스 성능 : {character.raid_rating} 점
               </h2>
-            </div>
+            </>
           )}
         </div>
       </div>
       <button
         onClick={() => navigate('/maple/')}
-        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20"
+        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20 hover:text-black"
       >
         Home
       </button>
       <button
         onClick={() => navigate(`/maple/${charId}/edit/`)}
-        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20"
+        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20 hover:text-black"
       >
         Edit
       </button>
       <button
         onClick={() => handleDelete()}
-        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20"
+        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20 hover:text-black"
       >
         Delete
       </button>

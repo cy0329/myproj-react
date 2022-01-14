@@ -1,5 +1,6 @@
 import { useApiAxios } from 'api/base';
 import DebugStates from 'components/DebugStates';
+import LoadingIndicator from 'components/LoadingIndicator';
 import useFieldValues from 'hooks/useFieldValues';
 import produce from 'immer';
 import { useEffect } from 'react';
@@ -23,7 +24,11 @@ function CharForm({ charId, handleDidSave }) {
     useApiAxios(`/maple/api/character/${charId}/`, { manual: !charId });
 
   const [
-    { loading: saveLoading, error: saveError, errorMessages: saveErrorMessage },
+    {
+      loading: saveLoading,
+      error: saveError,
+      errorMessages: saveErrorMessages,
+    },
     saveRequest,
   ] = useApiAxios(
     {
@@ -68,26 +73,40 @@ function CharForm({ charId, handleDidSave }) {
 
   return (
     <div>
-      <h2>캐릭터 폼</h2>
+      {saveLoading && <LoadingIndicator>저장 중...</LoadingIndicator>}
+      {saveError &&
+        `저장 중 에러가 발생했습니다.(${saveError.response.status} ${saveError.response.statusText})`}
       <form onSubmit={handleSubmit}>
         <div>
+          <h2 className="text-2xl text-extrabold">직업명</h2>
           <input
             type="text"
             name="job"
             value={fieldValues.job}
             onChange={handleFieldChange}
             placeholder="직업을 입력해주세요."
-            className="w-full block px-2 border-2 border-blue-400 rounded my-2"
+            className="w-full block px-2 border-2 hover:bg-gray-100 focus:border-blue-400 rounded my-2"
           />
+          {saveErrorMessages.job?.map((message, index) => (
+            <p key={index} className="text-xs text-red-400">
+              {message}
+            </p>
+          ))}
         </div>
         <div>
+          <h2 className="text-2xl text-extrabold">설명</h2>
           <textarea
             name="description"
             value={fieldValues.description}
             onChange={handleFieldChange}
             placeholder="설명을 입력해주세요."
-            className="w-full block p-2 border-2 border-red-400 rounded my-2 pb-40"
+            className="w-full block p-2 border-2 hover:bg-gray-100 focus:border-blue-400 rounded my-2 pb-40"
           />
+          {saveErrorMessages.description?.map((message, index) => (
+            <p key={index} className="text-xs text-red-400">
+              {message}
+            </p>
+          ))}
         </div>
         <div>
           <input
@@ -152,9 +171,25 @@ function CharForm({ charId, handleDidSave }) {
               <span className="onoff-switch"></span>
             </label>
           </div>
+          <div className="my-2 float-right">
+            <button
+              onClick={() => {
+                handleSubmit();
+              }}
+              className="py-2 w-20 rounded-2xl bg-gradient-to-r from-green-400 to-orange-400 text-white hover:from-orange-400 hover:to-green-300 hover:text-black mx-2 hover:scale-110"
+            >
+              저장하기
+            </button>
+            <button
+              onClick={() => navigate('/maple/')}
+              className="py-2 w-20 rounded-2xl bg-gradient-to-r from-green-400 to-orange-400 text-white hover:from-orange-400 hover:to-green-300 hover:text-black mx-2 hover:scale-110"
+            >
+              돌아가기
+            </button>
+          </div>
         </div>
         <div className="mt-2">
-          <div className="inline-block mr-4 p-2 border-2 border-blue-400 rounded-lg">
+          <div className="inline-block mr-2 w-40 p-2 border-2 border-blue-400 rounded-lg">
             <h2>사냥 능력</h2>
             <select
               name="hunt_rating"
@@ -173,7 +208,7 @@ function CharForm({ charId, handleDidSave }) {
               <option>5</option>
             </select>
           </div>
-          <div className="inline-block mr-4 p-2 border-2 border-blue-400 rounded-lg">
+          <div className="inline-block mr-2 w-40 p-2 border-2 border-blue-400 rounded-lg">
             <h2>보스 성능</h2>
             <select
               name="raid_rating"
@@ -193,20 +228,13 @@ function CharForm({ charId, handleDidSave }) {
             </select>
           </div>
         </div>
-        <button
-          onClick={() => {
-            handleSubmit();
-          }}
-        >
-          저장하기
-        </button>
-        <button onClick={() => navigate('/maple/')}>돌아가기</button>
       </form>
+
       <DebugStates
         charData={charData}
         getLoading={getLoading}
         getError={getError}
-        saveErrorMessage={saveErrorMessage}
+        saveErrorMessage={saveErrorMessages}
         fieldValues={fieldValues}
       />
     </div>

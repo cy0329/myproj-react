@@ -9,7 +9,6 @@ function PageCharForm() {
   const navigate = useNavigate();
   return (
     <div>
-      <h2>페이지 캐릭터 폼</h2>
       <CharForm
         charId={charId}
         handleDidSave={(savedPost) => navigate(`/maple/${savedPost.id}/`)}

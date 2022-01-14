@@ -20,7 +20,7 @@ function CharList() {
     <div>
       <button
         onClick={() => navigate('/maple/new/')}
-        className="rounded px-3 py-2 bg-gradient-to-r from-purple-300 to-red-300 text-white hover:bg-gradient-to-r hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4"
+        className="rounded px-3 py-2 bg-gradient-to-r from-purple-300 to-red-300 text-white hover:bg-gradient-to-r hover:from-red-300 hover:to-purple-300 hover:scale-110 hover:text-black duration-300 mb-4"
       >
         새 캐릭터 등록하기
       </button>
