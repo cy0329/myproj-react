@@ -1,6 +1,7 @@
 import { useApiAxios } from 'api/base';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import CharSelect from './CharSelect';
 
 function CharList() {
@@ -33,6 +34,7 @@ function CharList() {
             </div>
           ))}
       </div>
+      <ToastContainer />
     </div>
   );
 }

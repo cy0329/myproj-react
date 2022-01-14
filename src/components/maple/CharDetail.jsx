@@ -3,6 +3,7 @@ import H3 from 'components/H3';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function CharDetail({ charId }) {
   const [{ data: character, loading, error }, refetch] = useApiAxios(
@@ -29,6 +30,15 @@ function CharDetail({ charId }) {
     if (window.confirm('정말 삭제하겠습니까?')) {
       deleteChar().then(() => {
         navigate(`/maple/`);
+        toast.success('삭제가 완료되었습니다.', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
     }
   };
