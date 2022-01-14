@@ -19,6 +19,7 @@ import PageNewsIndex from 'pages/news/PageNewsIndex';
 import PageNewsArticleDetail from 'pages/news/PageNewsArticleDetail';
 import PageNewsArticleForm from 'pages/news/PageNewsArticleForm';
 import PageBlogDetail from 'pages/blog/PageblogDetail';
+import PageCharList from 'pages/maple/PageCharList';
 
 function App() {
   const windowWidth = useWindowWidth();
@@ -53,6 +54,9 @@ function App() {
             path="/news/:articleId/edit"
             element={<PageNewsArticleForm />}
           />
+
+          {/* 메이플(캐릭터) */}
+          <Route path="/maple/" element={<PageCharList />} />
 
           {/* examples */}
           {/* <Route path="/examples/components/" element={<Components />} />
