@@ -21,6 +21,7 @@ import PageNewsArticleForm from 'pages/news/PageNewsArticleForm';
 import PageBlogDetail from 'pages/blog/PageblogDetail';
 import PageCharList from 'pages/maple/PageCharList';
 import PageCharDetail from 'pages/maple/PageCharDetail';
+import PageCharForm from 'pages/maple/PageCharForm';
 
 function App() {
   const windowWidth = useWindowWidth();
@@ -59,6 +60,7 @@ function App() {
           {/* 메이플(캐릭터) */}
           <Route path="/maple/" element={<PageCharList />} />
           <Route path="/maple/:charId/" element={<PageCharDetail />} />
+          <Route path="/maple/new/" element={<PageCharForm />} />
 
           {/* examples */}
           {/* <Route path="/examples/components/" element={<Components />} />
