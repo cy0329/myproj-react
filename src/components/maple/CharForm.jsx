@@ -123,7 +123,6 @@ function CharForm({ charId, handleDidSave }) {
               <input
                 type="checkbox"
                 onChange={handleFieldChange}
-                value={fieldValues.invincibility}
                 name="invincibility"
                 checked={fieldValues.invincibility}
               />
@@ -136,7 +135,6 @@ function CharForm({ charId, handleDidSave }) {
               <input
                 type="checkbox"
                 onChange={handleFieldChange}
-                value={fieldValues.bind}
                 name="bind"
                 checked={fieldValues.bind}
               />
@@ -151,7 +149,6 @@ function CharForm({ charId, handleDidSave }) {
               <input
                 type="checkbox"
                 onChange={handleFieldChange}
-                value={fieldValues.rush}
                 name="rush"
                 checked={fieldValues.rush}
               />
@@ -164,7 +161,6 @@ function CharForm({ charId, handleDidSave }) {
               <input
                 type="checkbox"
                 onChange={handleFieldChange}
-                value={fieldValues.teleport}
                 name="teleport"
                 checked={fieldValues.teleport}
               />
@@ -181,7 +177,7 @@ function CharForm({ charId, handleDidSave }) {
               저장하기
             </button>
             <button
-              onClick={() => navigate('/maple/')}
+              onClick={() => navigate(charId ? `/maple/${charId}/` : `/maple/`)}
               className="py-2 w-20 rounded-2xl bg-gradient-to-r from-green-400 to-orange-400 text-white hover:from-orange-400 hover:to-green-300 hover:text-black mx-2 hover:scale-110"
             >
               돌아가기

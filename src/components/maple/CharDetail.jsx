@@ -76,12 +76,11 @@ function CharDetail({ charId }) {
               {/* 테이블 시작 */}
               <table>
                 <tr className="">
+                  <td className="p-2">
+                    <h3 className="inline">무적기</h3>
+                  </td>
                   {character.invincibility ? (
                     <>
-                      <td className="p-2">
-                        <h3 className="inline">무적기</h3>
-                      </td>
-
                       <td className="p-2">
                         <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
                           Yes!
@@ -90,9 +89,6 @@ function CharDetail({ charId }) {
                     </>
                   ) : (
                     <>
-                      <td className="p-2">
-                        <h3 className="inline">무적기</h3>
-                      </td>
                       <td className="p-2">
                         <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
                           No..
@@ -100,11 +96,11 @@ function CharDetail({ charId }) {
                       </td>
                     </>
                   )}
+                  <td className="p-2">
+                    <h3 className="inline">바인드</h3>
+                  </td>
                   {character.bind ? (
                     <>
-                      <td className="p-2">
-                        <h3 className="inline">바인드</h3>
-                      </td>
                       <td className="p-2">
                         <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
                           Yes!
@@ -113,9 +109,6 @@ function CharDetail({ charId }) {
                     </>
                   ) : (
                     <>
-                      <td className="p-2">
-                        <h3 className="inline">바인드</h3>
-                      </td>
                       <td className="p-2">
                         <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
                           No..
@@ -125,11 +118,11 @@ function CharDetail({ charId }) {
                   )}
                 </tr>
                 <tr>
+                  <td className="p-2">
+                    <h3 className="inline">돌진기</h3>
+                  </td>
                   {character.rush ? (
                     <>
-                      <td className="p-2">
-                        <h3 className="inline">돌진기</h3>
-                      </td>
                       <td className="p-2">
                         <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
                           Yes!
@@ -138,9 +131,6 @@ function CharDetail({ charId }) {
                     </>
                   ) : (
                     <>
-                      <td className="p-2">
-                        <h3 className="inline">돌진기</h3>
-                      </td>
                       <td className="p-2">
                         <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
                           No..
@@ -148,11 +138,11 @@ function CharDetail({ charId }) {
                       </td>
                     </>
                   )}
+                  <td className="p-2">
+                    <h3 className="inline">텔레포트</h3>
+                  </td>
                   {character.teleport ? (
                     <>
-                      <td className="p-2">
-                        <h3 className="inline">텔레포트</h3>
-                      </td>
                       <td className="p-2">
                         <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
                           Yes!
@@ -161,9 +151,6 @@ function CharDetail({ charId }) {
                     </>
                   ) : (
                     <>
-                      <td className="p-2">
-                        <h3 className="inline">텔레포트</h3>
-                      </td>
                       <td className="p-2">
                         <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
                           No..
@@ -183,26 +170,23 @@ function CharDetail({ charId }) {
           )}
         </div>
       </div>
-      <button
-        onClick={() => navigate('/maple/')}
-        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20 hover:text-black"
-      >
+      <button onClick={() => navigate('/maple/')} className={buttonCss}>
         Home
       </button>
       <button
         onClick={() => navigate(`/maple/${charId}/edit/`)}
-        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20 hover:text-black"
+        className={buttonCss}
       >
         Edit
       </button>
-      <button
-        onClick={() => handleDelete()}
-        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20 hover:text-black"
-      >
+      <button onClick={() => handleDelete()} className={buttonCss}>
         Delete
       </button>
     </>
   );
 }
+
+const buttonCss =
+  'rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20 hover:text-black';
 
 export default CharDetail;
