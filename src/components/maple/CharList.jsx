@@ -19,7 +19,7 @@ function CharList() {
       <div>
         {charList &&
           charList.map((char) => (
-            <div className="w-full sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-4 duration-300 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
+            <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
               <CharSelect key={char.id} char={char} />
             </div>
           ))}
