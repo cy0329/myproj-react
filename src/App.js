@@ -61,6 +61,7 @@ function App() {
           <Route path="/maple/" element={<PageCharList />} />
           <Route path="/maple/:charId/" element={<PageCharDetail />} />
           <Route path="/maple/new/" element={<PageCharForm />} />
+          <Route path="/maple/:charId/edit/" element={<PageCharForm />} />
 
           {/* examples */}
           {/* <Route path="/examples/components/" element={<Components />} />

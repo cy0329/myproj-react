@@ -16,6 +16,23 @@ function CharDetail({ charId }) {
     refetch();
   }, []);
 
+  const [{ loading: deleteLoading, error: deleteError }, deleteChar] =
+    useApiAxios(
+      {
+        url: `/maple/api/character/${charId}/`,
+        method: 'DELETE',
+      },
+      { manual: true },
+    );
+
+  const handleDelete = () => {
+    if (window.confirm('정말 삭제하겠습니까?')) {
+      deleteChar().then(() => {
+        navigate(`/maple/`);
+      });
+    }
+  };
+
   return (
     <>
       <div className="mb-5 shadow-xl rounded py-2">
@@ -155,9 +172,21 @@ function CharDetail({ charId }) {
       </div>
       <button
         onClick={() => navigate('/maple/')}
-        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4"
+        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20"
       >
         Home
+      </button>
+      <button
+        onClick={() => navigate(`/maple/${charId}/edit/`)}
+        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20"
+      >
+        Edit
+      </button>
+      <button
+        onClick={() => handleDelete()}
+        className="rounded px-3 py-2 bg-gradient-to-b from-purple-300 to-red-300 text-white hover:bg-gradient-to-b hover:from-red-300 hover:to-purple-300 hover:scale-110 duration-300 mb-4 mx-2 w-20"
+      >
+        Delete
       </button>
     </>
   );

@@ -106,6 +106,7 @@ function CharForm({ charId, handleDidSave }) {
                 onChange={handleFieldChange}
                 value={fieldValues.invincibility}
                 name="invincibility"
+                checked={fieldValues.invincibility}
               />
               <span className="onoff-switch"></span>
             </label>
@@ -118,6 +119,7 @@ function CharForm({ charId, handleDidSave }) {
                 onChange={handleFieldChange}
                 value={fieldValues.bind}
                 name="bind"
+                checked={fieldValues.bind}
               />
               <span className="onoff-switch"></span>
             </label>
@@ -132,6 +134,7 @@ function CharForm({ charId, handleDidSave }) {
                 onChange={handleFieldChange}
                 value={fieldValues.rush}
                 name="rush"
+                checked={fieldValues.rush}
               />
               <span className="onoff-switch"></span>
             </label>
@@ -144,6 +147,7 @@ function CharForm({ charId, handleDidSave }) {
                 onChange={handleFieldChange}
                 value={fieldValues.teleport}
                 name="teleport"
+                checked={fieldValues.teleport}
               />
               <span className="onoff-switch"></span>
             </label>

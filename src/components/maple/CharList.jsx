@@ -8,6 +8,7 @@ function CharList() {
 
   const [{ data: charList, loading, error }, refetch] = useApiAxios(
     '/maple/api/character/',
+    { manual: true },
   );
 
   useEffect(() => {
