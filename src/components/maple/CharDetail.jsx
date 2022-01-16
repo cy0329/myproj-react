@@ -58,6 +58,19 @@ function CharDetail({ charId }) {
               <h1 className="text-center text-extrabold text-2xl underline underline-offset-4 mb-3">
                 {character.job}
               </h1>
+
+              <h4 className="text-center text-bold text-lg">
+                {character.category === 1
+                  ? '전사'
+                  : character.category === 2
+                  ? '마법사'
+                  : character.category === 3
+                  ? '궁수'
+                  : character.category === 4
+                  ? '도적'
+                  : '해적'}
+              </h4>
+
               {character.photo && (
                 <img
                   src={character.photo}

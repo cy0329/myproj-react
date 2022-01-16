@@ -46,18 +46,95 @@ function CharList() {
         placeholder="검색어 + Enter"
       />
       <div>
+        {/* 검색시 */}
         {charList &&
-          (query
-            ? charList.map((char) => (
+          query &&
+          charList.map((char) => (
+            <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
+              <CharSelect key={char.id} char={char} />
+            </div>
+          ))}
+
+        {/* 검색 상황 x */}
+        {!query && (
+          <h2 className="text-lg text-extrabold border-l-4 pl-2 border-green-400 my-2">
+            전사 직업군
+          </h2>
+        )}
+        {charList &&
+          !query &&
+          charList.map(
+            (char) =>
+              char.category === 1 && (
                 <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
                   <CharSelect key={char.id} char={char} />
                 </div>
-              ))
-            : charList.map((char) => (
+              ),
+          )}
+
+        {!query && (
+          <h2 className="text-lg text-extrabold border-l-4 pl-2 border-green-400 my-2">
+            마법사 직업군
+          </h2>
+        )}
+        {charList &&
+          !query &&
+          charList.map(
+            (char) =>
+              char.category === 2 && (
                 <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
                   <CharSelect key={char.id} char={char} />
                 </div>
-              )))}
+              ),
+          )}
+
+        {!query && (
+          <h2 className="text-lg text-extrabold border-l-4 pl-2 border-green-400 my-2">
+            궁수 직업군
+          </h2>
+        )}
+        {charList &&
+          !query &&
+          charList.map(
+            (char) =>
+              char.category === 3 && (
+                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
+                  <CharSelect key={char.id} char={char} />
+                </div>
+              ),
+          )}
+
+        {!query && (
+          <h2 className="text-lg text-extrabold border-l-4 pl-2 border-green-400 my-2">
+            도적 직업군
+          </h2>
+        )}
+        {charList &&
+          !query &&
+          charList.map(
+            (char) =>
+              char.category === 4 && (
+                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
+                  <CharSelect key={char.id} char={char} />
+                </div>
+              ),
+          )}
+
+        {!query && (
+          <h2 className="text-lg text-extrabold border-l-4 pl-2 border-green-400 my-2">
+            해적 직업군
+          </h2>
+        )}
+        {charList &&
+          !query &&
+          charList.map(
+            (char) =>
+              char.category === 5 && (
+                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
+                  <CharSelect key={char.id} char={char} />
+                </div>
+              ),
+          )}
       </div>
       <ToastContainer />
     </div>

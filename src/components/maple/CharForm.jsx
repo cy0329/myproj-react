@@ -78,7 +78,19 @@ function CharForm({ charId, handleDidSave }) {
         `저장 중 에러가 발생했습니다.(${saveError.response.status} ${saveError.response.statusText})`}
       <form onSubmit={handleSubmit}>
         <div>
-          <h2 className="text-2xl text-extrabold">직업명</h2>
+          <h2 className="text-2xl text-extrabold inline">직업명</h2>
+          <select
+            name="category"
+            value={fieldValues.category}
+            onChange={handleFieldChange}
+            className="border-2 border-slate-400 inline rounded"
+          >
+            <option value={1}>전사</option>
+            <option value={2}>마법사</option>
+            <option value={3}>궁수</option>
+            <option value={4}>도적</option>
+            <option value={5}>해적</option>
+          </select>
           <input
             type="text"
             name="job"
