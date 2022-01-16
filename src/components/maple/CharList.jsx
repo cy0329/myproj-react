@@ -42,7 +42,7 @@ function CharList() {
         name="query"
         onChange={getQuery}
         onKeyPress={handleKeyPress}
-        className="p-2 border-2 border-purple-400 rounded-lg"
+        className="p-2 border-2 border-purple-400 rounded-lg focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
         placeholder="검색어 + Enter"
       />
       <div>
