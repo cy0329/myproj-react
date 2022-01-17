@@ -1,7 +1,7 @@
 import './App.css';
 import TopNav from 'components/TopNav';
-import Login from 'pages/accounts/Login';
-import Profile from 'pages/accounts/Profile';
+import PageLogin from 'pages/accounts/PageLogin';
+import Profile from 'pages/accounts/PageProfile';
 import Components from 'pages/examples/Components';
 import ReviewForm from 'pages/reviews/Reviewform';
 import ReviewList from 'pages/reviews/ReviewList';
@@ -24,14 +24,14 @@ import PageCharDetail from 'pages/maple/PageCharDetail';
 import PageCharForm from 'pages/maple/PageCharForm';
 
 function App() {
-  const windowWidth = useWindowWidth();
+  // const windowWidth = useWindowWidth();
   return (
     <>
       <div className="app">
         <TopNav />
         <Routes>
           <Route path="/" element={<Navigate to="/accounts/login/" />} />
-          <Route path="/accounts/login/" element={<Login />} />
+          <Route path="/accounts/login/" element={<PageLogin />} />
           <Route path="/accounts/profile/" element={<Profile />} />
           <Route path="/reviews/" element={<ReviewList />} />
           {/* 샵(리뷰) */}
