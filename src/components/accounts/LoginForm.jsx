@@ -8,6 +8,7 @@ import DebugStates from 'components/DebugStates';
 import useAuth from 'hooks/useAuth';
 import useFieldValues from 'hooks/useFieldValues';
 import useLocalStarage from 'hooks/useLocalStarage';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const INIT_FIELD_VALUES = {
@@ -19,7 +20,7 @@ function LoginForm() {
   const { fieldValues, handleFieldChange } = useFieldValues(INIT_FIELD_VALUES);
   const navigate = useNavigate();
 
-  const [auth, setAuth] = useAuth();
+  const [auth, , login] = useAuth();
 
   const [{ loading, error }, loginRequest] = useApiAxios(
     {
@@ -34,8 +35,7 @@ function LoginForm() {
     loginRequest({ data: fieldValues }).then((response) => {
       const { access, refresh, username, first_name, last_name } =
         response.data;
-      setAuth({
-        isLoggedIn: true,
+      login({
         access,
         refresh,
         username,
