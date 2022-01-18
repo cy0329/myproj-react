@@ -86,11 +86,11 @@ function CharForm({ charId, handleDidSave }) {
             onChange={handleFieldChange}
             className="border-2 border-purple-400 inline rounded-lg px-2 py-1 text-center text-xl mx-2 focus:outline-none focus:border-blue-400"
           >
-            <option value={1}>전사</option>
-            <option value={2}>마법사</option>
-            <option value={3}>궁수</option>
-            <option value={4}>도적</option>
-            <option value={5}>해적</option>
+            <option value="1">전사</option>
+            <option value="2">마법사</option>
+            <option value="3">궁수</option>
+            <option value="4">도적</option>
+            <option value="5">해적</option>
           </select>
           <h2 className="text-2xl text-extrabold inline">직업군</h2>
           <input

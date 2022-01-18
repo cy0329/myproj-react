@@ -1,4 +1,5 @@
 import { useApiAxios } from 'api/base';
+import DebugStates from 'components/DebugStates';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -60,15 +61,7 @@ function CharDetail({ charId }) {
               </h1>
 
               <h4 className="text-center text-bold text-lg">
-                {character.category === 1
-                  ? '전사'
-                  : character.category === 2
-                  ? '마법사'
-                  : character.category === 3
-                  ? '궁수'
-                  : character.category === 4
-                  ? '도적'
-                  : '해적'}
+                {character.category}
               </h4>
 
               {character.photo && (
@@ -88,90 +81,92 @@ function CharDetail({ charId }) {
               </div>
               {/* 테이블 시작 */}
               <table>
-                <tr className="">
-                  <td className="p-2">
-                    <h3 className="inline">무적기</h3>
-                  </td>
-                  {character.invincibility ? (
-                    <>
-                      <td className="p-2">
-                        <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
-                          Yes!
-                        </h3>
-                      </td>
-                    </>
-                  ) : (
-                    <>
-                      <td className="p-2">
-                        <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
-                          No..
-                        </h3>
-                      </td>
-                    </>
-                  )}
-                  <td className="p-2">
-                    <h3 className="inline">바인드</h3>
-                  </td>
-                  {character.bind ? (
-                    <>
-                      <td className="p-2">
-                        <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
-                          Yes!
-                        </h3>
-                      </td>
-                    </>
-                  ) : (
-                    <>
-                      <td className="p-2">
-                        <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
-                          No..
-                        </h3>
-                      </td>
-                    </>
-                  )}
-                </tr>
-                <tr>
-                  <td className="p-2">
-                    <h3 className="inline">돌진기</h3>
-                  </td>
-                  {character.rush ? (
-                    <>
-                      <td className="p-2">
-                        <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
-                          Yes!
-                        </h3>
-                      </td>
-                    </>
-                  ) : (
-                    <>
-                      <td className="p-2">
-                        <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
-                          No..
-                        </h3>
-                      </td>
-                    </>
-                  )}
-                  <td className="p-2">
-                    <h3 className="inline">텔레포트</h3>
-                  </td>
-                  {character.teleport ? (
-                    <>
-                      <td className="p-2">
-                        <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
-                          Yes!
-                        </h3>
-                      </td>
-                    </>
-                  ) : (
-                    <>
-                      <td className="p-2">
-                        <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
-                          No..
-                        </h3>
-                      </td>
-                    </>
-                  )}
-                </tr>
+                <tbody>
+                  <tr className="">
+                    <td className="p-2">
+                      <h3 className="inline">무적기</h3>
+                    </td>
+                    {character.invincibility ? (
+                      <>
+                        <td className="p-2">
+                          <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
+                            Yes!
+                          </h3>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td className="p-2">
+                          <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
+                            No..
+                          </h3>
+                        </td>
+                      </>
+                    )}
+                    <td className="p-2">
+                      <h3 className="inline">바인드</h3>
+                    </td>
+                    {character.bind ? (
+                      <>
+                        <td className="p-2">
+                          <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
+                            Yes!
+                          </h3>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td className="p-2">
+                          <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
+                            No..
+                          </h3>
+                        </td>
+                      </>
+                    )}
+                  </tr>
+                  <tr>
+                    <td className="p-2">
+                      <h3 className="inline">돌진기</h3>
+                    </td>
+                    {character.rush ? (
+                      <>
+                        <td className="p-2">
+                          <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
+                            Yes!
+                          </h3>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td className="p-2">
+                          <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
+                            No..
+                          </h3>
+                        </td>
+                      </>
+                    )}
+                    <td className="p-2">
+                      <h3 className="inline">텔레포트</h3>
+                    </td>
+                    {character.teleport ? (
+                      <>
+                        <td className="p-2">
+                          <h3 className="inline px-2 py-1 rounded bg-blue-500 text-white">
+                            Yes!
+                          </h3>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td className="p-2">
+                          <h3 className="inline px-2 py-1 rounded bg-red-500 text-white">
+                            No..
+                          </h3>
+                        </td>
+                      </>
+                    )}
+                  </tr>
+                </tbody>
               </table>
               <h2 className="border-2 border-purple-400 rounded text-xl text-extrabold inline px-2 mx-2">
                 사냥 능력 : {character.hunt_rating} 점
@@ -195,6 +190,7 @@ function CharDetail({ charId }) {
       <button onClick={() => handleDelete()} className={buttonCss}>
         Delete
       </button>
+      <DebugStates character={character} />
     </>
   );
 }
