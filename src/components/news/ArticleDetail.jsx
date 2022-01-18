@@ -9,7 +9,13 @@ function ArticleDetail({ articleId }) {
   const navigate = useNavigate();
 
   const [{ data: article, loading, error }, refetch] = useApiAxios(
-    `/news/api/articles/${articleId}/`,
+    {
+      url: `/news/api/articles/${articleId}/`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.access}`,
+      },
+    },
     { manual: true },
   );
 
@@ -23,7 +29,7 @@ function ArticleDetail({ articleId }) {
         url: `/news/api/articles/${articleId}/`,
         method: 'DELETE',
         headers: {
-          Authorizations: `Bearer ${auth.access}`,
+          Authorization: `Bearer ${auth.access}`,
         },
       },
       { manual: true },
@@ -46,14 +52,21 @@ function ArticleDetail({ articleId }) {
       {loading && <LoadingIndicator>로딩 중...</LoadingIndicator>}
       {deleteLoading && <LoadingIndicator>삭제 중...</LoadingIndicator>}
       {error &&
-        `로딩 중 에러가 발생했습니다. (${error.response.status} ${error.response.statusText})`}
+        `로딩 중 에러가 발생했습니다. (${error.response?.status} ${error.response?.statusText})`}
       {deleteError &&
-        `삭제 요청 중 에러가 발생했습니다. (${deleteError.response.status} ${deleteError.response.statusText})`}
+        `삭제 요청 중 에러가 발생했습니다. (${deleteError.response?.status} ${deleteError.response?.statusText})`}
       {article && (
         <>
           <h3 className="text-2xl my-5">{article.title}</h3>
           {article.photo && (
-            <img src={article.photo} alt={article.title} className="rounded" />
+            <>
+              <img
+                src={article.photo}
+                alt={article.title}
+                className="rounded"
+              />
+              <p>by {article.author.username}</p>
+            </>
           )}
           <div>
             {article.content.split(/[\r\n]+/).map((line, index) => (
