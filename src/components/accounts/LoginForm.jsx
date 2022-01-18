@@ -5,7 +5,9 @@
 
 import { useApiAxios } from 'api/base';
 import DebugStates from 'components/DebugStates';
+import useAuth from 'hooks/useAuth';
 import useFieldValues from 'hooks/useFieldValues';
+import useLocalStarage from 'hooks/useLocalStarage';
 import { useNavigate } from 'react-router-dom';
 
 const INIT_FIELD_VALUES = {
@@ -16,6 +18,9 @@ const INIT_FIELD_VALUES = {
 function LoginForm() {
   const { fieldValues, handleFieldChange } = useFieldValues(INIT_FIELD_VALUES);
   const navigate = useNavigate();
+
+  const [auth, setAuth] = useAuth();
+
   const [{ loading, error }, loginRequest] = useApiAxios(
     {
       url: `/accounts/api/token/`,
@@ -27,10 +32,21 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginRequest({ data: fieldValues }).then((response) => {
-      const { access, refresh } = response.data;
+      const { access, refresh, username, first_name, last_name } =
+        response.data;
+      setAuth({
+        isLoggedIn: true,
+        access,
+        refresh,
+        username,
+        first_name,
+        last_name,
+      });
       console.log('access :', access);
       console.log('refresh :', refresh);
-
+      console.log('username :', username);
+      console.log('first_name :', first_name);
+      console.log('last_name :', last_name);
       navigate('/');
     });
   };
@@ -72,6 +88,7 @@ function LoginForm() {
       <DebugStates
         username={fieldValues.username}
         password={fieldValues.password}
+        auth={auth}
       />
       {/* <div>ID : {fieldValues.username}</div>
       <div>PW : {fieldValues.password}</div> */}
