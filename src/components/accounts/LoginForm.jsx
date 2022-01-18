@@ -10,6 +10,7 @@ import useFieldValues from 'hooks/useFieldValues';
 import useLocalStarage from 'hooks/useLocalStarage';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 const INIT_FIELD_VALUES = {
   username: '',
@@ -92,6 +93,7 @@ function LoginForm() {
       />
       {/* <div>ID : {fieldValues.username}</div>
       <div>PW : {fieldValues.password}</div> */}
+      <ToastContainer />
     </div>
   );
 }

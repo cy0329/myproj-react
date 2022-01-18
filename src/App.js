@@ -22,6 +22,7 @@ import PageBlogDetail from 'pages/blog/PageblogDetail';
 import PageCharList from 'pages/maple/PageCharList';
 import PageCharDetail from 'pages/maple/PageCharDetail';
 import PageCharForm from 'pages/maple/PageCharForm';
+import SignupForm from 'components/accounts/SignupForm';
 
 function App() {
   // const windowWidth = useWindowWidth();
@@ -33,8 +34,10 @@ function App() {
           <Route path="/" element={<Navigate to="/news/" />} />
           <Route path="/accounts/login/" element={<PageLogin />} />
           <Route path="/accounts/profile/" element={<Profile />} />
-          <Route path="/reviews/" element={<ReviewList />} />
+          <Route path="/accounts/signup/" element={<SignupForm />} />
+
           {/* 샵(리뷰) */}
+          <Route path="/reviews/" element={<ReviewList />} />
           {/* 솔루션 방식(스타일링 거의 없음) */}
           <Route path="/reviews/new/" element={<PageReviewForm />} />
           <Route path="/reviews/:reviewId/edit/" element={<PageReviewForm />} />
