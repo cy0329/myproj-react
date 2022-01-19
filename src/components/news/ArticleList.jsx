@@ -2,7 +2,7 @@ import ArticleSummary from './ArticleSummary';
 import DebugStates from 'components/DebugStates';
 import { useApiAxios } from 'api/base';
 import useAuth from 'hooks/useAuth';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 
 function ArticleList() {
   const [auth] = useAuth();
