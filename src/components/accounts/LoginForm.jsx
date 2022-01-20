@@ -5,7 +5,7 @@
 
 import { useApiAxios } from 'api/base';
 import DebugStates from 'components/DebugStates';
-import useAuth from 'hooks/useAuth';
+import { useAuthContext } from 'hooks/AuthContext';
 import useFieldValues from 'hooks/useFieldValues';
 import useLocalStarage from 'hooks/useLocalStarage';
 import { useEffect } from 'react';
@@ -21,7 +21,7 @@ function LoginForm() {
   const { fieldValues, handleFieldChange } = useFieldValues(INIT_FIELD_VALUES);
   const navigate = useNavigate();
 
-  const [auth, , login] = useAuth();
+  const { auth, login } = useAuthContext();
 
   const [{ loading, error }, loginRequest] = useApiAxios(
     {

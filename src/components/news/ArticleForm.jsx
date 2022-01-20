@@ -6,7 +6,7 @@ import useFieldValues from 'hooks/useFieldValues';
 import { useApiAxios } from 'api/base';
 import { useEffect } from 'react';
 import produce from 'immer';
-import useAuth from 'hooks/useAuth';
+import { useAuthContext } from 'hooks/AuthContext';
 
 const INIT_FIELD_VALUES = { title: '', content: '' };
 
@@ -14,7 +14,7 @@ const INIT_FIELD_VALUES = { title: '', content: '' };
 // articleId  : 수정
 
 function ArticleForm({ articleId, handleDidSave }) {
-  const [auth] = useAuth();
+  const { auth } = useAuthContext();
 
   // articleId 값이 있을 때에만 조회
   // articleId => manual=false

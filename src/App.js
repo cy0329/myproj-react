@@ -23,51 +23,61 @@ import PageCharList from 'pages/maple/PageCharList';
 import PageCharDetail from 'pages/maple/PageCharDetail';
 import PageCharForm from 'pages/maple/PageCharForm';
 import SignupForm from 'components/accounts/SignupForm';
+import { AuthContextProvider } from 'hooks/AuthContext';
 
 function App() {
   // const windowWidth = useWindowWidth();
   return (
     <>
-      <div className="app">
-        <TopNav />
-        <Routes>
-          <Route path="/" element={<Navigate to="/accounts/login/" />} />
-          <Route path="/accounts/login/" element={<PageLogin />} />
-          <Route path="/accounts/profile/" element={<Profile />} />
-          <Route path="/accounts/signup/" element={<SignupForm />} />
+      {/* app.js 전역에 Provider로 context객체의 내용을 제공함으로써 
+    Route에 element로 지정된 컴포넌트들이 전부 사용할 수 있음 */}
+      <AuthContextProvider>
+        <div className="app">
+          <TopNav />
+          <Routes>
+            <Route path="/" element={<Navigate to="/accounts/login/" />} />
+            <Route path="/accounts/login/" element={<PageLogin />} />
+            <Route path="/accounts/profile/" element={<Profile />} />
+            <Route path="/accounts/signup/" element={<SignupForm />} />
 
-          {/* 샵(리뷰) */}
-          <Route path="/reviews/" element={<ReviewList />} />
-          {/* 솔루션 방식(스타일링 거의 없음) */}
-          <Route path="/reviews/new/" element={<PageReviewForm />} />
-          <Route path="/reviews/:reviewId/edit/" element={<PageReviewForm />} />
-          {/* 내 방식 */}
-          {/* <Route path="/reviews/new/" element={<ReviewForm />} />
+            {/* 샵(리뷰) */}
+            <Route path="/reviews/" element={<ReviewList />} />
+            {/* 솔루션 방식(스타일링 거의 없음) */}
+            <Route path="/reviews/new/" element={<PageReviewForm />} />
+            <Route
+              path="/reviews/:reviewId/edit/"
+              element={<PageReviewForm />}
+            />
+            {/* 내 방식 */}
+            {/* <Route path="/reviews/new/" element={<ReviewForm />} />
         <Route path="/reviews/:reviewId/edit/" element={<ReviewForm />} /> */}
 
-          {/* 블로그(포스트) */}
-          <Route path="/blogs/" element={<PageblogList />} />
-          <Route path="/blogs/new/" element={<PageblogForm />} />
-          <Route path="/blogs/:postId/" element={<PageBlogDetail />} />
-          <Route path="/blogs/:postId/edit/" element={<PageblogForm />} />
+            {/* 블로그(포스트) */}
+            <Route path="/blogs/" element={<PageblogList />} />
+            <Route path="/blogs/new/" element={<PageblogForm />} />
+            <Route path="/blogs/:postId/" element={<PageBlogDetail />} />
+            <Route path="/blogs/:postId/edit/" element={<PageblogForm />} />
 
-          {/* 뉴스(아티클) */}
-          <Route path="/news/" element={<PageNewsIndex />} />
-          <Route path="/news/new" element={<PageNewsArticleForm />} />
-          <Route path="/news/:articleId/" element={<PageNewsArticleDetail />} />
-          <Route
-            path="/news/:articleId/edit"
-            element={<PageNewsArticleForm />}
-          />
+            {/* 뉴스(아티클) */}
+            <Route path="/news/" element={<PageNewsIndex />} />
+            <Route path="/news/new" element={<PageNewsArticleForm />} />
+            <Route
+              path="/news/:articleId/"
+              element={<PageNewsArticleDetail />}
+            />
+            <Route
+              path="/news/:articleId/edit"
+              element={<PageNewsArticleForm />}
+            />
 
-          {/* 메이플(캐릭터) */}
-          <Route path="/maple/" element={<PageCharList />} />
-          <Route path="/maple/:charId/" element={<PageCharDetail />} />
-          <Route path="/maple/new/" element={<PageCharForm />} />
-          <Route path="/maple/:charId/edit/" element={<PageCharForm />} />
+            {/* 메이플(캐릭터) */}
+            <Route path="/maple/" element={<PageCharList />} />
+            <Route path="/maple/:charId/" element={<PageCharDetail />} />
+            <Route path="/maple/new/" element={<PageCharForm />} />
+            <Route path="/maple/:charId/edit/" element={<PageCharForm />} />
 
-          {/* examples */}
-          {/* <Route path="/examples/components/" element={<Components />} />
+            {/* examples */}
+            {/* <Route path="/examples/components/" element={<Components />} />
           <Route path="/examples/css-module/" element={<CssModule />} />
           <Route path="/examples/css-in-js/" element={<CssInJs />} />
           <Route path="/examples/context-api/" element={<ContextApiSample />} />
@@ -75,10 +85,11 @@ function App() {
             path="/examples/context-api-2/"
             element={<ContextApiSample2 />}
           /> */}
-        </Routes>
-        {/* <hr />
+          </Routes>
+          {/* <hr />
         윈도우 가로크기 : {windowWidth}px */}
-      </div>
+        </div>
+      </AuthContextProvider>
       {/* <Routes>
         <Route path="/examples/clock/" element={<Clock />} />
       </Routes> */}

@@ -1,8 +1,8 @@
-import useAuth from 'hooks/useAuth';
+import { useAuthContext } from 'hooks/AuthContext';
 import { Link, NavLink } from 'react-router-dom';
 
 function TopNav() {
-  const [auth, , , logout] = useAuth();
+  const { auth, logout } = useAuthContext();
   return (
     <div className="my-5">
       <div className="flex gap-4">
