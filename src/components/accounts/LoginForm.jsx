@@ -48,7 +48,7 @@ function LoginForm() {
       console.log('username :', username);
       console.log('first_name :', first_name);
       console.log('last_name :', last_name);
-      navigate('/');
+      navigate('/news/');
     });
   };
 
