@@ -1,6 +1,7 @@
 import { useApiAxios } from 'api/base';
 import DebugStates from 'components/DebugStates';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { useAuthContext } from 'hooks/AuthContext';
 import useFieldValues from 'hooks/useFieldValues';
 import produce from 'immer';
 import { useEffect } from 'react';
@@ -19,9 +20,16 @@ const INIT_FIELD_VALUES = {
 };
 
 function CharForm({ charId, handleDidSave }) {
+  const { auth } = useAuthContext();
   const navigate = useNavigate();
   const [{ data: charData, loading: getLoading, error: getError }] =
-    useApiAxios(`/maple/api/character/${charId}/`, { manual: !charId });
+    useApiAxios(
+      {
+        url: `/maple/api/character/${charId}/`,
+        method: 'GET',
+      },
+      { manual: !charId },
+    );
 
   const [
     {
@@ -36,6 +44,9 @@ function CharForm({ charId, handleDidSave }) {
         ? `/maple/api/character/`
         : `/maple/api/character/${charId}/`,
       method: !charId ? 'POST' : 'PUT',
+      headers: {
+        Authorization: `Bearer ${auth.access}`,
+      },
     },
     { manual: true },
   );

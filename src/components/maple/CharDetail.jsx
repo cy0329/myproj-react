@@ -1,11 +1,13 @@
 import { useApiAxios } from 'api/base';
 import DebugStates from 'components/DebugStates';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { useAuthContext } from 'hooks/AuthContext';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function CharDetail({ charId }) {
+  const { auth } = useAuthContext();
   const [{ data: character, loading, error }, refetch] = useApiAxios(
     `/maple/api/character/${charId}/`,
     { manual: true },
@@ -22,6 +24,9 @@ function CharDetail({ charId }) {
       {
         url: `/maple/api/character/${charId}/`,
         method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${auth.access}`,
+        },
       },
       { manual: true },
     );

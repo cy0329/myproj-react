@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuthContext } from 'hooks/AuthContext';
 
 function PostDetail({ postId }) {
+  const { auth } = useAuthContext();
   const navigate = useNavigate();
 
   const [{ data: post, loading, error }, refetch] = useApiAxios(
@@ -22,6 +24,9 @@ function PostDetail({ postId }) {
       {
         url: `/blog/api/posts/${postId}/`,
         method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${auth.access}`,
+        },
       },
       { manual: true },
     );

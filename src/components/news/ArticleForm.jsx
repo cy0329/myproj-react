@@ -23,9 +23,6 @@ function ArticleForm({ articleId, handleDidSave }) {
     {
       url: `/news/api/articles/${articleId}`,
       method: 'GET',
-      headers: {
-        Authorization: `Bearer ${auth.access}`,
-      },
     },
     { manual: !articleId },
   );

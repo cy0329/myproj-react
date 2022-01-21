@@ -2,15 +2,20 @@ import { useApiAxios } from 'api/base';
 import Button from 'components/Button';
 import DebugStates from 'components/DebugStates';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { useAuthContext } from 'hooks/AuthContext';
 import useFieldValues from 'hooks/useFieldValues';
 import { useNavigate } from 'react-router-dom';
 
 const INIT_FIELD_VALUES = { title: '', content: '' };
 
 function PostForm({ postId, handleDidSave }) {
+  const { auth } = useAuthContext();
   const navigate = useNavigate();
   const [{ data: post, loading: getLoading, error: getError }] = useApiAxios(
-    `/blog/api/posts/${postId}/`,
+    {
+      url: `/blog/api/posts/${postId}/`,
+      method: 'GET',
+    },
     { manual: !postId },
   );
 
@@ -25,6 +30,9 @@ function PostForm({ postId, handleDidSave }) {
     {
       url: !postId ? `/blog/api/posts/` : `/blog/api/posts/${postId}/`,
       method: !postId ? 'POST' : 'PUT',
+      headers: {
+        Authorization: `Bearer ${auth.access}`,
+      },
     },
     { manual: true },
   );
