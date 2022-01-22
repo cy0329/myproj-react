@@ -66,7 +66,15 @@ function CharDetail({ charId }) {
               </h1>
 
               <h4 className="text-center text-bold text-lg">
-                {character.category}
+                {character.category === 1
+                  ? '전사'
+                  : 2
+                  ? '마법사'
+                  : 3
+                  ? '궁수'
+                  : 4
+                  ? '도적'
+                  : '해적'}
               </h4>
 
               {character.photo && (

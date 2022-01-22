@@ -49,97 +49,67 @@ function CharList() {
         <h2 className="text-extrabold text-xl border-l-4 border-purple-400 px-2 mb-2">
           전사 직업군
         </h2>
-        {charList && query
-          ? charList
-              .filter((char) => char.category === 1)
-              .map((char) => (
-                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
-                  <CharSelect key={char.id} char={char} />
-                </div>
-              ))
-          : charList
-              .filter((char) => char.category === 1)
-              .map((char) => (
-                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
-                  <CharSelect key={char.id} char={char} />
-                </div>
-              ))}
+        {charList &&
+          charList
+            .filter((char) => char.category === 1)
+            .sort((a, b) => a.job.localeCompare(b.job))
+            .map((character) => (
+              <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
+                <CharSelect key={character.id} char={character} />
+              </div>
+            ))}
 
         <h2 className="text-extrabold text-xl border-l-4 border-purple-400 px-2 mb-2">
           마법사 직업군
         </h2>
-        {charList && query
-          ? charList
-              .filter((char) => char.category === 2)
-              .map((char) => (
-                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
-                  <CharSelect key={char.id} char={char} />
-                </div>
-              ))
-          : charList
-              .filter((char) => char.category === 2)
-              .map((char) => (
-                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
-                  <CharSelect key={char.id} char={char} />
-                </div>
-              ))}
+        {charList &&
+          charList
+            .filter((char) => char.category === 2)
+            .sort((a, b) => a.job.localeCompare(b.job))
+            .map((character) => (
+              <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
+                <CharSelect key={character.id} char={character} />
+              </div>
+            ))}
 
         <h2 className="text-extrabold text-xl border-l-4 border-purple-400 px-2 mb-2">
           궁수 직업군
         </h2>
-        {charList && query
-          ? charList
-              .filter((char) => char.category === 3)
-              .map((char) => (
-                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
-                  <CharSelect key={char.id} char={char} />
-                </div>
-              ))
-          : charList
-              .filter((char) => char.category === 3)
-              .map((char) => (
-                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
-                  <CharSelect key={char.id} char={char} />
-                </div>
-              ))}
+        {charList &&
+          charList
+            .filter((char) => char.category === 3)
+            .sort((a, b) => a.job.localeCompare(b.job))
+            .map((character) => (
+              <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
+                <CharSelect key={character.id} char={character} />
+              </div>
+            ))}
 
         <h2 className="text-extrabold text-xl border-l-4 border-purple-400 px-2 mb-2">
           도적 직업군
         </h2>
-        {charList && query
-          ? charList
-              .filter((char) => char.category === 4)
-              .map((char) => (
-                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
-                  <CharSelect key={char.id} char={char} />
-                </div>
-              ))
-          : charList
-              .filter((char) => char.category === 4)
-              .map((char) => (
-                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
-                  <CharSelect key={char.id} char={char} />
-                </div>
-              ))}
+        {charList &&
+          charList
+            .filter((char) => char.category === 4)
+            .sort((a, b) => a.job.localeCompare(b.job))
+            .map((character) => (
+              <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
+                <CharSelect key={character.id} char={character} />
+              </div>
+            ))}
 
         <h2 className="text-extrabold text-xl border-l-4 border-purple-400 px-2 mb-2">
           해적 직업군
         </h2>
-        {charList && query
-          ? charList
-              .filter((char) => char.category === 5)
-              .map((char) => (
-                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
-                  <CharSelect key={char.id} char={char} />
-                </div>
-              ))
-          : charList
-              .filter((char) => char.category === 5)
-              .map((char) => (
-                <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
-                  <CharSelect key={char.id} char={char} />
-                </div>
-              ))}
+        {charList &&
+          charList
+            .filter((char) => char.category === 5)
+            .sort((a, b) => a.job.localeCompare(b.job))
+            .map((character) => (
+              <div className="w-full md:w-2/3 sl:2-1/3 px-2 py-1 transition-transform hover:translate-x-8 hover:scale-110 duration-200 rounded mb-1 bg-gradient-to-r from-purple-300 to-red-100">
+                <CharSelect key={character.id} char={character} />
+              </div>
+            ))}
       </div>
       <ToastContainer />
     </div>
