@@ -194,8 +194,8 @@ function CharForm({ charId, handleDidSave }) {
           </div>
           <div className="my-2 float-right">
             <button
-              onClick={() => {
-                handleSubmit();
+              onClick={(e) => {
+                handleSubmit(e);
               }}
               className="py-2 w-20 rounded-2xl bg-gradient-to-r from-green-400 to-orange-400 text-white hover:from-orange-400 hover:to-green-300 hover:text-black mx-2 hover:scale-110"
             >
